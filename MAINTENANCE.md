@@ -47,8 +47,8 @@ GAIMER uses a **thin engine fork + separate product repo** model. Two repositori
 ### `gaimer` (this repo)
 
 ```bash
-# origin = your GitHub repo for the GAIMER product
-git remote add origin git@github.com:<your-org>/gaimer.git
+# origin = the GAIMER product repo (created Phase 1a)
+git remote add origin https://github.com/coolm4ttman/gaimer.git
 ```
 
 This repo has **no `upstream`** — it does not track O3DE. It depends on a *built/registered*
@@ -56,16 +56,51 @@ engine, not on engine source.
 
 ### `gaimer-engine` (the fork)
 
+The repo `https://github.com/coolm4ttman/gaimer-engine` exists but is **empty** — it is a
+*fresh* repo (not a GitHub fork), seeded from a full O3DE clone the first time (see §2b). Day-to-day:
+
 ```bash
-git clone git@github.com:<your-org>/gaimer-engine.git
+git clone https://github.com/coolm4ttman/gaimer-engine.git
 cd gaimer-engine
 git remote add upstream https://github.com/o3de/o3de.git
 git remote set-url --push upstream DISABLED   # never push to upstream by accident
 git fetch upstream --tags
 ```
 
-- **`origin`** → `<your-org>/gaimer-engine` (our fork; we push here).
+- **`origin`** → `coolm4ttman/gaimer-engine` (our fork; we push here).
 - **`upstream`** → `o3de/o3de` (read-only; we only fetch).
+
+### 2b. First-time seeding of `gaimer-engine` (run ONCE, on a machine with disk + bandwidth)
+
+The Mac was deliberately not used for this (shallow inspection clone only). Do it on the
+Windows build box or any machine with ~20 GB free:
+
+```bash
+# 1. Full clone of the pinned O3DE release (NOT development — see §3 pinning policy)
+git clone https://github.com/o3de/o3de.git gaimer-engine
+cd gaimer-engine
+git lfs install && git lfs pull
+git checkout <pinned-o3de-release-tag-or-branch>   # detach/branch from the chosen release
+
+# 2. Repoint origin to OUR empty repo; keep o3de as upstream
+git remote rename origin upstream
+git remote set-url --push upstream DISABLED
+git remote add origin https://github.com/coolm4ttman/gaimer-engine.git
+
+# 3. Create the branch structure (§3): pristine mirror, rebrand topic, integration
+git branch -f main HEAD                # pristine mirror @ the pinned release
+git checkout -b gaimer/rebrand main    # apply the 3 editor-string edits here (see docs/REBRAND.md)
+#   ... make the rebrand commit(s) ...
+git checkout -b gaimer/integration main
+git merge --ff-only gaimer/rebrand
+
+# 4. Push all three branches to our fork
+git push -u origin main gaimer/rebrand gaimer/integration
+
+# 5. Record the pin back in the gaimer repo
+#    -> engine-patches/PINNED_O3DE.txt  (ref + sha + toolchain)
+#    -> git format-patch main..gaimer/rebrand -o <gaimer>/engine-patches/
+```
 
 ---
 

@@ -68,17 +68,19 @@ end maps the most likely failures to fixes.
 mkdir C:\o3de-packages
 
 :: Engine FORK (not o3de/o3de directly) — build from gaimer/integration
-git clone git@github.com:<your-org>/gaimer-engine.git C:\gaimer-engine
+:: NOTE: if gaimer-engine is still EMPTY, seed it first per MAINTENANCE.md §2b, then continue.
+git clone https://github.com/coolm4ttman/gaimer-engine.git C:\gaimer-engine
 cd C:\gaimer-engine
 git remote add upstream https://github.com/o3de/o3de.git
 git checkout gaimer/integration         :: = pinned O3DE release + rebrand patch
-git lfs pull
+git lfs install & git lfs pull
 
 :: The GAIMER product repo (project + gems + branding)
-git clone git@github.com:<your-org>/gaimer.git C:\gaimer
+git clone https://github.com/coolm4ttman/gaimer.git C:\gaimer
 ```
 
 - [ ] Confirm the engine pin matches `C:\gaimer\engine-patches\PINNED_O3DE.txt`.
+- [ ] If `gaimer-engine` is empty, complete **MAINTENANCE.md §2b (first-time seeding)** before building.
 
 ### 3b. Apply branding asset swaps (Bucket B2)
 

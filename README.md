@@ -19,8 +19,8 @@ carries only the minimal editor-shell rebrand.
 
 ## Repos
 
-- **`gaimer`** (this repo) — Project + Gems + branding assets + docs. The real product.
-- **`gaimer-engine`** — thin fork of `o3de/o3de`; only the editor rebrand lives there.
+- **`gaimer`** (this repo) — [github.com/coolm4ttman/gaimer](https://github.com/coolm4ttman/gaimer) — Project + Gems + branding assets + docs. The real product.
+- **`gaimer-engine`** — [github.com/coolm4ttman/gaimer-engine](https://github.com/coolm4ttman/gaimer-engine) — thin fork of `o3de/o3de`; only the editor rebrand lives there. Seed it per [MAINTENANCE.md §2b](MAINTENANCE.md) before the first build.
 
 ## Layout
 
