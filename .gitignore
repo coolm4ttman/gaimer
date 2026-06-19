@@ -1,0 +1,26 @@
+# Build output (engine/project are built elsewhere; never commit build artifacts)
+build/
+bin/
+Cache/
+user/
+*.waf_pickle
+
+# O3DE local / generated
+*.setreg.local
+Registry/*.setreg.local
+o3de_logs/
+
+# IDE / OS
+.vs/
+.vscode/
+*.user
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Do NOT ignore the inspection clone path here — it lives OUTSIDE this repo
+# (/Users/mattclarke/o3de-inspect) on purpose.

@@ -1,0 +1,19 @@
+# O3DE engine pin for GAIMER
+# Format: <ref>  <commit-sha>  <notes>
+# Update this whenever the engine fork is synced (see MAINTENANCE.md §4).
+
+# --- TO BE SET on first real sync ---
+# Inspected during Phase 1a scaffolding:
+#   engine.json version : 2.7.0
+#   default branch cloned: development  (DO NOT build from development — pin a release/stabilization ref)
+#
+# Before the first Windows build, choose the latest stable O3DE release branch/tag and record:
+# ref:
+# sha:
+# date pinned:
+#
+# Toolchain used for the successful build (fill in from the RTX 5080 box):
+# visual-studio:
+# msvc-toolset:
+# cmake:
+# nvidia-driver:
