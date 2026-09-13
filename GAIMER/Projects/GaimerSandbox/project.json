@@ -1,0 +1,50 @@
+{
+    "project_name": "GaimerSandbox",
+    "version": "1.0.0",
+    "project_id": "{CD2B2E1D-1F9E-49C0-B6C6-5D8214D260C6}",
+    "origin": "The primary repo for GaimerSandbox goes here: i.e. http://www.mydomain.com",
+    "license": "What license GaimerSandbox uses goes here: i.e. https://opensource.org/licenses/Apache-2.0 Or https://opensource.org/licenses/MIT etc.",
+    "display_name": "GaimerSandbox",
+    "summary": "A short description of GaimerSandbox.",
+    "canonical_tags": [
+        "Project"
+    ],
+    "user_tags": [
+        "GaimerSandbox"
+    ],
+    "icon_path": "preview.png",
+    "engine": "o3de",
+    "external_subdirectories": [
+        "C:/Users/Matt/gaimer/o3de/GAIMER/Gems/GaimerAiOrchestration",
+        "Gem"
+    ],
+    "restricted": "GaimerSandbox",
+    "gem_names": [
+        "Atom",
+        "AudioSystem",
+        "CameraFramework",
+        "DebugDraw",
+        "DiffuseProbeGrid",
+        "EMotionFX",
+        "EditorPythonBindings",
+        "GaimerAiOrchestration",
+        "GaimerSandbox",
+        "GameState",
+        "ImGui",
+        "LandscapeCanvas",
+        "LyShine",
+        "MiniAudio",
+        "PhysX5",
+        "PrefabBuilder",
+        "PrimitiveAssets",
+        "QtForPython",
+        "RemoteTools",
+        "SaveData",
+        "ScriptCanvasPhysics",
+        "ScriptEvents",
+        "StartingPointInput",
+        "TextureAtlas",
+        "WhiteBox"
+    ],
+    "engine_version": "2.6.0"
+}

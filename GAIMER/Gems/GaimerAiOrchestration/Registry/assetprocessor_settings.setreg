@@ -1,0 +1,18 @@
+{
+    "Amazon": {
+        "AssetProcessor": {
+            "Settings": {
+                "ScanFolder GaimerAiOrchestration/Assets": {
+                    "watch": "@GEMROOT:GaimerAiOrchestration@/Assets",
+                    "recursive": 1,
+                    "order": 101
+                },
+                "ScanFolder GaimerAiOrchestration/Registry": {
+                    "watch": "@GEMROOT:GaimerAiOrchestration@/Registry",
+                    "recursive": 1,
+                    "order": 102
+                }
+            }
+        }
+    }
+}
