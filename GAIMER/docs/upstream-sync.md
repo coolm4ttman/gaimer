@@ -17,7 +17,7 @@ changes intact and merges clean. This is a Phase 1 deliverable.
 |---|---|
 | Engine fork (working copy) | `C:\Users\Matt\gaimer\o3de` |
 | GAIMER-specific content | `C:\Users\Matt\gaimer\o3de\GAIMER\` (this folder) |
-| `origin` | `https://github.com/coolm4ttman/o3de.git` (our fork) |
+| `origin` | `https://github.com/coolm4ttman/gaimer.git` (our fork; repo renamed from `coolm4ttman/o3de` on 2026-07-13) |
 | `upstream` | `https://github.com/o3de/o3de.git` (canonical O3DE) |
 | Working branch | `gaimer-main` |
 | Current baseline | O3DE stable release tag **`2605.0`** (26.05 / v2.6.0) |
