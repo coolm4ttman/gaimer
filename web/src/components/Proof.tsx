@@ -1,43 +1,43 @@
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
-// PLACEHOLDER stories: structure mirrors Lovable's customer carousel. Replace with real creator stories.
+// CONCEPT stories: fictional creators, quotes and numbers for this concept site (disclosed under the carousel).
 const stories = [
   {
     team: 'NIGHTFALL',
-    intro: 'A two-person team rebuilt survival horror inside an open-world RPG over a single weekend.',
+    intro: 'Two friends rebuilt Skyrim as a survival horror game over one weekend, with dragons that hunt by sound.',
     quote: '“We described the mechanic and had it running in-game before lunch. That never happens.”',
     stats: [
       ['48h', 'from idea to release'],
       ['0', 'lines written by hand'],
       ['#1', 'trending mod that week'],
     ],
-    person: 'Creator name',
-    role: 'Mod author',
+    person: 'Maya Okafor',
+    role: 'Co-creator, Nightfall',
   },
   {
     team: 'PIXELFORGE',
-    intro: 'A first-time modder shipped a full co-op mode for their favourite farming game.',
-    quote: '“I’d never written a line of C#. Gaimer read the game, explained it, and built it with me.”',
+    intro: 'A first-time modder shipped a full co-op base-building mode for Minecraft in three days.',
+    quote: '“I’d never written a line of Java. Gaimer read the game, explained it, and built it with me.”',
     stats: [
       ['3 days', 'to a working co-op build'],
       ['12', 'mechanics added'],
       ['4.9★', 'average community rating'],
     ],
-    person: 'Creator name',
-    role: 'First-time modder',
+    person: 'Leo Brandt',
+    role: 'Creator, Pixelforge',
   },
   {
     team: 'IRONCLAD',
-    intro: 'A veteran mod team moved their whole pipeline to Gaimer and doubled their release cadence.',
+    intro: 'A veteran Cyberpunk 2077 mod team moved their whole pipeline to Gaimer and doubled how often they ship.',
     quote: '“Hot reload alone changed how we work. We iterate inside the game now, not around it.”',
     stats: [
       ['2×', 'faster release cadence'],
       ['30+', 'mods maintained'],
       ['0', 'broken saves since'],
     ],
-    person: 'Creator name',
-    role: 'Lead modder',
+    person: 'Sam Whitlock',
+    role: 'Lead modder, Ironclad',
   },
 ]
 
@@ -69,7 +69,12 @@ function StoryCard({ s, className = '' }: { s: Story; className?: string }) {
       </div>
       <div className="mt-12 flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <div className="brand-gradient size-12 rounded-lg" />
+          <div className="brand-gradient flex size-12 items-center justify-center rounded-lg font-semibold text-white">
+            {s.person
+              .split(' ')
+              .map((w) => w[0])
+              .join('')}
+          </div>
           <div>
             <div className="text-sm text-ink">{s.person}</div>
             <div className="text-xs text-body">{s.role}</div>
@@ -207,6 +212,7 @@ export function Proof() {
           <ChevronRight className="size-4" />
         </button>
       </div>
+      <p className="mt-6 text-center text-xs text-subtle">Concept site: creators, quotes and figures are illustrative.</p>
     </section>
   )
 }

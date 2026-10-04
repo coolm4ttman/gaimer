@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Globe } from './Globe'
 
-// PLACEHOLDER numbers – replace with real metrics before launch.
+// CONCEPT figures for this concept site (disclosed under the list).
 const stats = [
-  ['Mods built every week', '00,000'],
-  ['Games supported', '000+'],
-  ['Hours of modding saved', '0.0 million'],
+  ['Mods built every week', '12,400'],
+  ['Games supported', '6'],
+  ['Hours of modding saved', '1.8 million'],
 ]
 
 export function Stats() {
@@ -34,6 +34,7 @@ export function Stats() {
               </div>
             ))}
           </dl>
+          <p className="mt-6 text-xs text-subtle">Illustrative figures for this concept.</p>
         </div>
         <div className="mx-auto w-full max-w-[600px]">
           <Globe />

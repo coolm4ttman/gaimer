@@ -41,10 +41,10 @@ const joinCards: { title: string; cta: string; href: string; style: string }[] =
 ]
 
 const stats = [
-  ['00K+', 'Discord members'],
-  ['000+', 'Community leaders'],
-  ['000+', 'Events hosted globally'],
-  ['00+', 'Countries with ambassadors'],
+  ['18K+', 'Discord members'],
+  ['240+', 'Community leaders'],
+  ['310+', 'Events hosted globally'],
+  ['27', 'Countries with ambassadors'],
 ]
 
 type EventType = 'Modding jam' | 'Workshop' | 'Meetup' | 'Online'
@@ -207,7 +207,7 @@ export function CommunityPage() {
       {/* Statement + join cards */}
       <section className="px-4 pt-32 pb-24">
         <p className="mx-auto max-w-[600px] text-[28px]/[40px] font-[480] text-[oklch(0.1_0_0)] md:text-4xl/[49.5px]">
-          Connect with 00K+{' '}
+          Connect with 18K+{' '}
           <Chip>
             <Users className="size-4" />
           </Chip>{' '}
@@ -251,6 +251,7 @@ export function CommunityPage() {
             </div>
           ))}
         </dl>
+        <p className="mt-10 text-center text-xs text-subtle">Concept site: community figures, events and members are illustrative.</p>
       </section>
 
       {/* Events finder */}
