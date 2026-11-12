@@ -13,7 +13,7 @@ export function CreatorsPage() {
   return (
     <>
       <PageHeader eyebrow="Creators" title="Built by modders, for modders">
-        Meet the creators shipping mods with Gaimer, and join the programme that backs them.
+        Meet the creators shipping mods with GAIMER, and join the programme that backs them.
       </PageHeader>
       <section className="px-6">
         <div className="container-l grid gap-3 md:grid-cols-3">

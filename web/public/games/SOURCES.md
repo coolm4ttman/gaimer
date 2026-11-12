@@ -36,3 +36,14 @@ Downloaded 2026-10-04 and resized to 900px. Official store screenshots and art; 
 | cards/elden-ring-*.jpg | Steam store screenshots, Elden Ring (app 1245620) |
 | cards/red-dead-redemption-2-*.jpg | Steam store screenshots, Red Dead Redemption 2 (app 1174180) |
 | cards/minecraft-*.png | minecraft.net "About Minecraft" key art (Survive the Night, Gather Resources, Build Amazing Things) |
+
+## Home hero backdrops (`backdrops/`)
+
+Downloaded 2026-11-12 (Steam `library_hero_2x.jpg`, 3840x1240), resized to 2560px. Official promotional art; check usage with legal before launch.
+
+| File | Source |
+| --- | --- |
+| backdrops/gta-v.jpg | https://cdn.cloudflare.steamstatic.com/steam/apps/3240220/library_hero_2x.jpg |
+| backdrops/cyberpunk-2077.jpg | https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/library_hero_2x.jpg (bottom 6% cropped) |
+| backdrops/elden-ring.jpg | https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/library_hero_2x.jpg |
+| backdrops/red-dead-redemption-2.jpg | https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_hero_2x.jpg |

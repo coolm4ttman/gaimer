@@ -13,10 +13,17 @@ export function GamePage() {
   if (!game) return <NotFoundPage />
 
   return (
-    <>
-      <GameHero game={game} />
-      <Platform content={gameContent[game.slug]} />
-      <Faq items={gameFaqs[game.slug]} />
-    </>
+    <div className="theme-dark">
+      {/* Padding, not the hero's own margin: a margin would collapse through this wrapper and show the light page behind the nav. */}
+      <div className="grad-down pt-16">
+        <GameHero game={game} />
+      </div>
+      <div className="grad-up">
+        <Platform content={gameContent[game.slug]} />
+      </div>
+      <div className="grad-down">
+        <Faq items={gameFaqs[game.slug]} />
+      </div>
+    </div>
   )
 }

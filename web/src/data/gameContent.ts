@@ -3,7 +3,7 @@ import type { PlatformContent } from '../components/Platform'
 // Per-game copy for the "One editor" section on each game page.
 // PLACEHOLDER: claims about loader support and features describe the intended product; confirm before launch.
 
-const ideaTitle = 'Describe it. Gaimer builds it.'
+const ideaTitle = 'Describe it. GAIMER builds it.'
 
 export const gameContent: Record<string, PlatformContent> = {
   'gta-v': {
@@ -14,10 +14,10 @@ export const gameContent: Record<string, PlatformContent> = {
     ],
     heading: 'One editor. Endless GTA V mods.',
     intro:
-      'Los Santos is one of the most modded worlds in gaming. Gaimer reads the game’s scripts and natives so you can add missions, vehicles and mechanics to story mode just by describing them.',
+      'Los Santos is one of the most modded worlds in gaming. GAIMER reads the game’s scripts and natives so you can add missions, vehicles and mechanics to story mode just by describing them.',
     idea: {
       title: ideaTitle,
-      body: 'Describe a mission, vehicle or mechanic and Gaimer writes the C# against Script Hook V and the game’s natives.',
+      body: 'Describe a mission, vehicle or mechanic and GAIMER writes the C# against Script Hook V and the game’s natives.',
       prompt: 'Add a grappling hook to GTA V…',
     },
     refine: {
@@ -41,10 +41,10 @@ export const gameContent: Record<string, PlatformContent> = {
     ],
     heading: 'One editor. Endless Minecraft mods.',
     intro:
-      'From a single new block to a full modpack, Gaimer writes the Java, registers your content and hot-swaps it into a running world.',
+      'From a single new block to a full modpack, GAIMER writes the Java, registers your content and hot-swaps it into a running world.',
     idea: {
       title: ideaTitle,
-      body: 'Describe blocks, mobs, biomes or whole dimensions and Gaimer writes the Java and data files for your chosen loader.',
+      body: 'Describe blocks, mobs, biomes or whole dimensions and GAIMER writes the Java and data files for your chosen loader.',
       prompt: 'Make a mob that steals torches at night…',
     },
     refine: {
@@ -68,10 +68,10 @@ export const gameContent: Record<string, PlatformContent> = {
     ],
     heading: 'One editor. Endless Skyrim mods.',
     intro:
-      'Skyrim modding runs on records, scripts and load orders. Gaimer understands all three, so new quests, perks and loot slot in without breaking your setup.',
+      'Skyrim modding runs on records, scripts and load orders. GAIMER understands all three, so new quests, perks and loot slot in without breaking your setup.',
     idea: {
       title: ideaTitle,
-      body: 'Describe a quest, perk or item and Gaimer writes the Papyrus and plugin records, then checks your load order.',
+      body: 'Describe a quest, perk or item and GAIMER writes the Papyrus and plugin records, then checks your load order.',
       prompt: 'Make dragons drop legendary loot…',
     },
     refine: {
@@ -95,10 +95,10 @@ export const gameContent: Record<string, PlatformContent> = {
     ],
     heading: 'One editor. Endless Cyberpunk 2077 mods.',
     intro:
-      'Night City is built to be bent. Gaimer works with REDmod, Cyber Engine Tweaks and redscript to change how quickhacks, cyberware and the city itself behave.',
+      'Night City is built to be bent. GAIMER works with REDmod, Cyber Engine Tweaks and redscript to change how quickhacks, cyberware and the city itself behave.',
     idea: {
       title: ideaTitle,
-      body: 'Describe a perk, quickhack or vehicle tweak and Gaimer writes the redscript and Lua, wired into the right systems.',
+      body: 'Describe a perk, quickhack or vehicle tweak and GAIMER writes the redscript and Lua, wired into the right systems.',
       prompt: 'Add cyberware that slows time on dodge…',
     },
     refine: {
@@ -122,10 +122,10 @@ export const gameContent: Record<string, PlatformContent> = {
     ],
     heading: 'One editor. Endless Elden Ring mods.',
     intro:
-      'The Lands Between run on params, scripts and events. Gaimer edits them safely, so you can rebalance builds, reshape bosses or add co-op mechanics for offline play.',
+      'The Lands Between run on params, scripts and events. GAIMER edits them safely, so you can rebalance builds, reshape bosses or add co-op mechanics for offline play.',
     idea: {
       title: ideaTitle,
-      body: 'Describe a rebalance, new mechanic or boss change and Gaimer finds the right params and scripts and makes the edits.',
+      body: 'Describe a rebalance, new mechanic or boss change and GAIMER finds the right params and scripts and makes the edits.',
       prompt: 'Make every boss drop a unique talisman…',
     },
     refine: {
@@ -149,10 +149,10 @@ export const gameContent: Record<string, PlatformContent> = {
     ],
     heading: 'One editor. Endless Red Dead 2 mods.',
     intro:
-      'From horse bonding to bounty hunting, Gaimer reads the game’s scripts and natives so you can change how the frontier plays in story mode.',
+      'From horse bonding to bounty hunting, GAIMER reads the game’s scripts and natives so you can change how the frontier plays in story mode.',
     idea: {
       title: ideaTitle,
-      body: 'Describe a mechanic, job or rebalance and Gaimer writes the script against ScriptHookRDR2 and the game’s natives.',
+      body: 'Describe a mechanic, job or rebalance and GAIMER writes the script against ScriptHookRDR2 and the game’s natives.',
       prompt: 'Add a bounty board to every town…',
     },
     refine: {

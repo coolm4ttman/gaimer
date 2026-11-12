@@ -25,10 +25,12 @@ export function Globe({
   markers = defaultMarkers,
   className = '',
   speed = 0.003,
+  dark = false,
 }: {
   markers?: ModMarker[]
   className?: string
   speed?: number
+  dark?: boolean
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const pointerInteracting = useRef<{ x: number; y: number } | null>(null)
@@ -87,13 +89,13 @@ export function Globe({
         height: width,
         phi: 0,
         theta: 0.2,
-        dark: 0,
+        dark: dark ? 1 : 0,
         diffuse: 1.5,
         mapSamples: 16000,
-        mapBrightness: 10,
-        baseColor: [0.95, 0.95, 0.95],
+        mapBrightness: dark ? 6 : 10,
+        baseColor: dark ? [0.32, 0.29, 0.5] : [0.95, 0.95, 0.95],
         markerColor: [1, 0.235, 0.44], // brand pink #ff3c70
-        glowColor: [0.94, 0.93, 0.91],
+        glowColor: dark ? [0.32, 0.28, 0.53] : [0.94, 0.93, 0.91],
         markerElevation: 0.01,
         markers: markers.map((m) => ({ location: m.location, size: 0.02, id: m.id })),
         arcs: [],
@@ -132,7 +134,7 @@ export function Globe({
       cancelAnimationFrame(animationId)
       globe?.destroy()
     }
-  }, [markers, speed])
+  }, [markers, speed, dark])
 
   return (
     <div className={`relative aspect-square select-none ${className}`}>

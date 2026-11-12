@@ -2,7 +2,7 @@
 // re-coloured to the GAIMER palette (violet → pink → orange → amber).
 export function Glow({ className = '' }: { className?: string }) {
   return (
-    <div aria-hidden="true" className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`}>
+    <div aria-hidden="true" data-glow className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`}>
       <div
         className="absolute -inset-x-[10%] -top-[5%] -bottom-[5%] animate-glow blur-[48px]"
         style={{

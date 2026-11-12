@@ -36,7 +36,7 @@ export const games: Game[] = [
     logo: '/games/minecraft.svg',
     logoClass: 'h-7',
     loaders: ['Fabric', 'Forge', 'NeoForge'],
-    blurb: 'Describe new blocks, mobs and dimensions and Gaimer writes the Java, registers everything and hot-swaps it in.',
+    blurb: 'Describe new blocks, mobs and dimensions and GAIMER writes the Java, registers everything and hot-swaps it in.',
     ideas: ['Add a co-op base building mode', 'Create a mob that steals torches at night', 'Make crops grow faster near water'],
   },
   {
@@ -47,7 +47,7 @@ export const games: Game[] = [
     logo: '/games/skyrim.png',
     logoClass: 'h-12',
     loaders: ['SKSE', 'Papyrus', 'Creation Kit records'],
-    blurb: 'Gaimer reads the game’s records and scripts so new quests, perks and loot fit Skyrim’s systems and your load order.',
+    blurb: 'GAIMER reads the game’s records and scripts so new quests, perks and loot fit Skyrim’s systems and your load order.',
     ideas: ['Make dragons drop legendary loot', 'Add a survival hunger and fatigue system', 'Rebalance archery perks'],
   },
   {
@@ -69,7 +69,7 @@ export const games: Game[] = [
     logo: '/games/eldenring.svg',
     logoClass: 'h-6',
     loaders: ['ModEngine 2', 'Param editing'],
-    blurb: 'Rebalance weapons, enemies and co-op with param and script changes that Gaimer checks before they touch your save.',
+    blurb: 'Rebalance weapons, enemies and co-op with param and script changes that GAIMER checks before they touch your save.',
     ideas: ['Add a co-op revive mechanic', 'Make every boss drop a unique talisman', 'Scale enemies to party size'],
   },
   {
@@ -84,3 +84,6 @@ export const games: Game[] = [
     ideas: ['Rebalance horse stamina and bonding', 'Add a bounty board in every town', 'Make camp upgrades cheaper'],
   },
 ]
+
+// Logos drawn in black; invert them on dark backgrounds.
+export const DARK_LOGOS = new Set(['skyrim', 'elden-ring', 'cyberpunk-2077'])

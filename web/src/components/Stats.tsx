@@ -23,7 +23,7 @@ export function Stats() {
             Millions of players, more mods
           </h2>
           <p className="mt-4 text-lg/7 text-body">
-            Modders across the world use Gaimer every day to build the content their games are missing. Join them now and
+            Modders across the world use GAIMER every day to build the content their games are missing. Join them now and
             turn “someone should mod this” into today.
           </p>
           <dl className="mt-10 space-y-5">
@@ -37,7 +37,7 @@ export function Stats() {
           <p className="mt-6 text-xs text-subtle">Illustrative figures for this concept.</p>
         </div>
         <div className="mx-auto w-full max-w-[600px]">
-          <Globe />
+          <Globe dark />
         </div>
       </div>
     </section>

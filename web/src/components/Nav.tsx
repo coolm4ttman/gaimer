@@ -1,17 +1,17 @@
 import { ArrowRight, ChevronDown, Menu, X } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router'
-import { games } from '../data/games'
+import { DARK_LOGOS, games } from '../data/games'
+import { isDarkRoute } from '../lib/darkRoutes'
 import { DownloadButton } from './Download'
 import { Logo } from './Logo'
 import { ResourcesPanel } from './ResourcesPanel'
 
-// Plain links after the Games and Resources menus (the mobile menu also lists Resources).
-const links: { label: string; to: string }[] = [
-  { label: 'Community', to: '/community' },
-  { label: 'Pricing', to: '/pricing' },
-]
-const mobileLinks = [{ label: 'Resources', to: '/resources' }, ...links]
+// Resources menu is switched off until the platform has more to show; flip this to bring it (and its mobile link) back.
+const SHOW_RESOURCES = false
+// Plain links after the Games menu. Community is hidden for now too (its page still exists at /community).
+const links: { label: string; to: string }[] = [{ label: 'Pricing', to: '/pricing' }]
+const mobileLinks = SHOW_RESOURCES ? [{ label: 'Resources', to: '/resources' }, ...links] : links
 
 // Lovable-style Resources mega-menu; opens on hover or click, closes on Escape, outside click or navigation.
 function ResourcesMenu({ tone }: { tone: string }) {
@@ -78,15 +78,15 @@ function GamesMenu({ tone }: { tone: string }) {
       {open && (
         // pt-2 bridges the gap so the menu stays open while the pointer moves onto it.
         <div className="absolute top-full left-0 pt-2">
-          <div className="w-[300px] rounded-xl bg-surface p-2 shadow-prompt">
+          <div className="w-[300px] rounded-xl bg-[#0f0f13]/95 p-2 shadow-[inset_0_0_0_1px_rgb(255_255_255/0.08),0_16px_40px_-8px_rgb(0_0_0/0.6)] backdrop-blur-md">
             <ul>
               {games.map((g) => (
                 <li key={g.slug}>
-                  <Link to={`/games/${g.slug}`} onClick={() => setOpen(false)} className="flex items-center gap-3 rounded-lg px-2 py-2 transition-colors hover:bg-black/[0.04]">
-                    <span className="flex h-8 w-14 shrink-0 items-center justify-center rounded-md bg-muted-surface">
-                      <img src={g.logo} alt="" className="max-h-5 w-auto max-w-[44px] object-contain" />
+                  <Link to={`/games/${g.slug}`} onClick={() => setOpen(false)} className="flex items-center gap-3 rounded-lg px-2 py-2 transition-colors hover:bg-white/[0.06]">
+                    <span className="flex h-8 w-14 shrink-0 items-center justify-center rounded-md bg-[#1a1a1a]">
+                      <img src={g.logo} alt="" className={`max-h-5 w-auto max-w-[44px] object-contain ${DARK_LOGOS.has(g.slug) ? 'brightness-0 invert' : ''}`} />
                     </span>
-                    <span className="text-sm text-ink">{g.name}</span>
+                    <span className="text-sm text-white/85">{g.name}</span>
                   </Link>
                 </li>
               ))}
@@ -94,7 +94,7 @@ function GamesMenu({ tone }: { tone: string }) {
             <Link
               to="/games"
               onClick={() => setOpen(false)}
-              className="mt-1 flex items-center justify-between rounded-lg border-t border-black/5 px-2 pt-3 pb-2 text-sm font-medium text-ink hover:opacity-70"
+              className="mt-1 flex items-center justify-between rounded-lg border-t border-white/[0.08] px-2 pt-3 pb-2 text-sm font-medium text-white hover:opacity-70"
             >
               All supported games <ArrowRight className="size-3.5" />
             </Link>
@@ -108,8 +108,6 @@ function GamesMenu({ tone }: { tone: string }) {
 export function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
-  const { pathname } = useLocation()
-
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 4)
     onScroll()
@@ -117,23 +115,24 @@ export function Nav() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Over the dark hero video (home page only), until the nav picks up its light background.
-  const onVideo = pathname === '/' && !scrolled && !open
-  const tone = onVideo ? 'text-white' : 'text-ink'
+  const { pathname } = useLocation()
+  // White nav text whenever it sits on something dark: a dark page, or the black glass bar once scrolled.
+  const onDark = scrolled || open || isDarkRoute(pathname)
+  const tone = onDark ? 'text-white' : 'text-ink'
 
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-[background-color,backdrop-filter] duration-300 ${
-        scrolled || open ? 'bg-page/80 backdrop-blur-md' : ''
+        scrolled || open ? 'bg-black/80 backdrop-blur-md' : ''
       }`}
     >
       <div className="container-l flex h-16 items-center justify-between px-6 min-[1168px]:px-0">
         <div className="flex items-center gap-8">
-          <Logo />
+          <Logo onDark={onDark} />
           <nav className="hidden lg:block">
             <ul className="flex items-center gap-[14px]">
               <GamesMenu tone={tone} />
-              <ResourcesMenu tone={tone} />
+              {SHOW_RESOURCES && <ResourcesMenu tone={tone} />}
               {links.map((l) => (
                 <li key={l.label}>
                   <NavLink
@@ -155,8 +154,8 @@ export function Nav() {
           <a
             href="#cta"
             className={`rounded-lg px-2.5 py-1.5 text-sm transition-colors ${
-              onVideo
-                ? 'text-white shadow-[inset_0_0_0_1px_rgb(255_255_255/0.35)] hover:bg-white/10'
+              onDark
+                ? 'text-white shadow-[inset_0_0_0_1px_rgb(255_255_255/0.3)] hover:bg-white/10'
                 : 'text-ink shadow-[inset_0_0_0_1px_rgb(0_0_0/0.15)] hover:bg-black/5'
             }`}
           >
@@ -169,16 +168,16 @@ export function Nav() {
         </button>
       </div>
       {open && (
-        <div className="h-[calc(100dvh-4rem)] overflow-y-auto bg-page px-6 pb-8 lg:hidden">
+        <div className="h-[calc(100dvh-4rem)] overflow-y-auto bg-black px-6 pb-8 text-white lg:hidden">
           <ul className="flex flex-col py-2">
-            <li className="border-b border-black/5 py-4">
+            <li className="border-b border-white/10 py-4">
               <Link to="/games" onClick={() => setOpen(false)} className="block text-lg">
                 Games
               </Link>
               <ul className="mt-2 space-y-1 pl-3">
                 {games.map((g) => (
                   <li key={g.slug}>
-                    <Link to={`/games/${g.slug}`} onClick={() => setOpen(false)} className="block py-1.5 text-base text-body">
+                    <Link to={`/games/${g.slug}`} onClick={() => setOpen(false)} className="block py-1.5 text-base text-white/65">
                       {g.name}
                     </Link>
                   </li>
@@ -187,14 +186,14 @@ export function Nav() {
             </li>
             {mobileLinks.map((l) => (
               <li key={l.label}>
-                <Link to={l.to} onClick={() => setOpen(false)} className="block border-b border-black/5 py-4 text-lg">
+                <Link to={l.to} onClick={() => setOpen(false)} className="block border-b border-white/10 py-4 text-lg">
                   {l.label}
                 </Link>
               </li>
             ))}
           </ul>
           <div className="mt-6 grid grid-cols-2 gap-2">
-            <a href="#cta" onClick={() => setOpen(false)} className="rounded-lg py-2.5 text-center shadow-[inset_0_0_0_1px_rgb(0_0_0/0.15)]">
+            <a href="#cta" onClick={() => setOpen(false)} className="rounded-lg py-2.5 text-center shadow-[inset_0_0_0_1px_rgb(255_255_255/0.3)]">
               Log in
             </a>
             <DownloadButton size="sm" className="justify-center py-2.5" />

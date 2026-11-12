@@ -2,6 +2,8 @@ import { useEffect } from 'react'
 import { BrowserRouter, Outlet, Route, Routes, useLocation } from 'react-router'
 import { Footer } from './components/Footer'
 import { Nav } from './components/Nav'
+import { ShaderBackground } from './components/ui/mesh-drift-shader'
+import { isDarkRoute } from './lib/darkRoutes'
 import { CommunityPage } from './pages/CommunityPage'
 import { CreatorsPage } from './pages/CreatorsPage'
 import { GamePage } from './pages/GamePage'
@@ -20,15 +22,35 @@ function ScrollToTop() {
   return null
 }
 
+// Dark pages: each section's gradient runs the opposite way to the one before. The footer carries on the pattern,
+// so it needs the direction after the page's last section.
+function footerGradient(pathname: string) {
+  if (!isDarkRoute(pathname)) return ''
+  return pathname.startsWith('/games/') ? 'theme-dark grad-up' : 'theme-dark grad-down'
+}
+
+// Site palette for the shader: black, the gradient purple, the button violet and a deep purple.
+const SHADER_COLOURS = ['#000000', '#514786', '#6664aa', '#2b2450']
+
 function Layout() {
+  const { pathname } = useLocation()
+  // Dark pages get a black page background too, so nothing light shows behind the nav or on overscroll.
+  const dark = isDarkRoute(pathname)
+  useEffect(() => {
+    document.body.style.backgroundColor = dark ? '#000' : ''
+  }, [dark])
   return (
     <>
       <ScrollToTop />
+      {/* Dark pages: one animated mesh behind everything; the grad-down/grad-up sections fade it in and out. */}
+      {dark && <ShaderBackground className="pointer-events-none fixed inset-0 -z-10" colors={SHADER_COLOURS} hue={0} />}
       <Nav />
       <main>
         <Outlet />
       </main>
-      <Footer />
+      <div className={footerGradient(pathname)}>
+        <Footer />
+      </div>
     </>
   )
 }

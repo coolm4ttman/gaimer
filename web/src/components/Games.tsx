@@ -1,40 +1,42 @@
+import { DARK_LOGOS } from '../data/games'
 import { Link } from 'react-router'
 import { games } from '../data/games'
 
-// Lovable's "Trusted by top brands" block, with supported-game logos linking to each game's page.
+// Supported-game logos, boxed like the feature boxes above and sitting on the same dark gradient. The logos are
+// shown on a #1A1A1A panel; the all-black logos (Skyrim, Elden Ring, Cyberpunk) are rendered white so they read on it.
+// Logos drawn in black; on the dark panel they're shown in white.
 
 export function Games() {
   return (
-    <section id="games" className="scroll-mt-16 border-b border-black/10 pt-26 lg:pt-0">
-      <div className="container-l grid items-center lg:grid-cols-[1fr_352px] lg:gap-16">
-        {/* 3 columns x 2 rows; column rules run the full section height, logos sit either side of the middle. */}
-        <div className="order-2 grid grid-cols-3 border-black/10 lg:order-1 lg:border-l">
+    <section id="games" className="scroll-mt-16 px-6 py-24 md:py-32">
+      <article className="container-l grid gap-2 rounded-3xl bg-white/[0.04] p-2 shadow-[inset_0_0_0_1px_rgb(255_255_255/0.08)] lg:grid-cols-[1fr_380px]">
+        <div className="grid grid-cols-2 overflow-hidden rounded-2xl bg-[#1a1a1a] sm:grid-cols-3">
           {games.map((g, i) => (
             <Link
               key={g.slug}
               to={`/games/${g.slug}`}
-              className={`flex h-[120px] items-center justify-center border-r border-black/10 px-4 transition-colors hover:bg-black/[0.02] lg:h-[210px] ${
-                i < 3 ? 'lg:items-end lg:pb-10' : 'lg:items-start lg:pt-10'
-              }`}
+              className={`flex h-[120px] items-center justify-center border-white/[0.07] px-4 transition-colors hover:bg-white/[0.03] lg:h-[180px] ${
+                i % 3 !== 2 ? 'sm:border-r' : ''
+              } ${i < 3 ? 'sm:border-b' : ''} ${i % 2 === 0 ? 'max-sm:border-r' : ''} ${i < 4 ? 'max-sm:border-b' : ''}`}
             >
-              <img src={g.logo} alt={g.name} loading="lazy" className={`${g.logoClass} w-auto max-w-[70%] object-contain`} />
+              <img src={g.logo} alt={g.name} loading="lazy" className={`${g.logoClass} w-auto max-w-[70%] object-contain ${DARK_LOGOS.has(g.slug) ? 'brightness-0 invert' : ''}`} />
             </Link>
           ))}
         </div>
-        <div className="order-1 px-6 pb-16 lg:order-2 lg:px-0 lg:pb-0">
-          <h2 className="text-[28px]/[1.1] font-semibold tracking-[-1.12px] text-ink">Built for the games you play</h2>
-          <p className="mt-4 text-lg/7 text-body">
-            Modders everywhere use Gaimer to build the content their games are missing. Join them today and mod the game
+        <div className="flex flex-col justify-center p-6 md:p-10">
+          <h2 className="text-[18px]/[1.15] font-semibold tracking-[-0.5px] text-white md:text-[26px]/[1.15] md:tracking-[-0.9px]">Built for the games you play</h2>
+          <p className="mt-4 text-base/6 text-white/65">
+            Modders everywhere use GAIMER to build the content their games are missing. Join them today and mod the game
             you can’t stop playing.
           </p>
           <Link
             to="/games"
-            className="mt-10 inline-block rounded-md bg-surface px-4 py-[9.5px] text-[13px]/[21px] font-semibold text-ink shadow-button transition-colors hover:bg-black/[0.02]"
+            className="mt-8 inline-block w-fit rounded-lg bg-white/10 px-4 py-2 text-[13px]/[21px] font-semibold text-white shadow-[inset_0_0_0_1px_rgb(255_255_255/0.2)] transition-colors hover:bg-white/15"
           >
             See all games
           </Link>
         </div>
-      </div>
+      </article>
     </section>
   )
 }

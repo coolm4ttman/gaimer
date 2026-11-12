@@ -10,19 +10,19 @@ export function Faq({ items }: { items: [string, string][] }) {
   return (
     <section className="px-6 py-24">
       <div className="mx-auto flex max-w-[576px] flex-col">
-        <h2 className="text-center text-[32px]/[1.1] font-semibold tracking-[-1.2px] text-[oklch(0.1_0_0)] md:text-5xl/[52.8px]">
+        <h2 className="text-center text-[32px]/[1.1] font-semibold tracking-[-1.2px] text-ink md:text-5xl/[52.8px]">
           Frequently asked questions
         </h2>
         <div className="mt-10 flex flex-col gap-2">
           {items.map(([q, a], i) => {
             const isOpen = open === i
             return (
-              <div key={q} className="rounded-2xl border border-footer-border bg-page">
+              <div key={q} className="rounded-2xl bg-white/[0.04] shadow-[inset_0_0_0_1px_rgb(255_255_255/0.08)]">
                 <h3>
                   <button
                     onClick={() => setOpen(isOpen ? null : i)}
                     aria-expanded={isOpen}
-                    className="flex w-full items-center justify-between gap-4 px-4 py-3 text-left text-lg/[27px] font-[480] text-[oklch(0.1_0_0)]"
+                    className="flex w-full items-center justify-between gap-4 px-4 py-3 text-left text-lg/[27px] font-[480] text-ink"
                   >
                     {q}
                     <ChevronRight
@@ -32,7 +32,7 @@ export function Faq({ items }: { items: [string, string][] }) {
                 </h3>
                 <div className={`grid transition-[grid-template-rows] duration-200 ${isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
                   <div className="overflow-hidden">
-                    <p className="px-4 pb-3 text-base/6 text-[rgb(95_95_93)]">{a}</p>
+                    <p className="px-4 pb-3 text-base/6 text-body">{a}</p>
                   </div>
                 </div>
               </div>

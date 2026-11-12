@@ -19,8 +19,8 @@ const homeContent: PlatformContent = {
   heading: 'One editor. Endless mods.',
   intro: 'If you can describe it, you can mod it. Create, test, and ship entire mods and total conversions from scratch.',
   idea: {
-    title: 'Describe it. Gaimer builds it.',
-    body: 'Describe what you want in plain language and watch Gaimer write real mod code with you, in real time, as you play.',
+    title: 'Describe it. GAIMER builds it.',
+    body: 'Describe what you want in plain language and watch GAIMER write real mod code with you, in real time, as you play.',
     prompt: 'Make dragons drop legendary loot in Skyrim',
     steps: ['Read Skyrim.esm · 14 dragon loot lists', 'Wrote DragonLoot.psc · +48 lines', 'Hot-reloading into Skyrim…'],
   },
@@ -32,8 +32,8 @@ const homeContent: PlatformContent = {
     image: '/games/cards/skyrim-1.jpg',
   },
   stack: {
-    title: 'Depend on Gaimer, end to end',
-    body: 'Gaimer handles the whole pipeline, from reading game files and mod loaders to save backups, packaging and publishing.',
+    title: 'Depend on GAIMER, end to end',
+    body: 'GAIMER handles the whole pipeline, from reading game files and mod loaders to save backups, packaging and publishing.',
     rows: ['Game index', 'Assets', 'Mod loaders', 'Save backups', 'Versions', 'Packaging', 'Publish'],
     active: 2,
     details: ['SKSE 2.2.6 detected', 'Address Library installed', '214 mods scanned, 0 conflicts', 'Save backed up 2 min ago'],
@@ -42,7 +42,7 @@ const homeContent: PlatformContent = {
 
 const stackIcons = [Layers, FolderTree, Puzzle, Shield, GitBranch, Package, Rocket]
 
-// Prompt in, agent working: the request and the first steps Gaimer takes.
+// Prompt in, agent working: the request and the first steps GAIMER takes.
 function IdeaVisual({ prompt, steps = [] }: { prompt: string; steps?: string[] }) {
   return (
     <div className="relative h-full overflow-hidden">
@@ -145,8 +145,8 @@ export function Platform({ content = homeContent }: { content?: PlatformContent 
         <p className="mt-4 max-w-[412px] text-base/6 text-body">{intro}</p>
         <div className="mt-17 grid gap-3 md:grid-cols-3">
           {cards.map((c, i) => (
-            <article key={c.title} className="flex flex-col overflow-hidden rounded-2xl bg-surface shadow-card md:min-h-[425px]">
-              <div className="relative h-[230px] overflow-hidden md:h-[273px]">
+            <article key={c.title} className="flex flex-col overflow-hidden rounded-2xl bg-white/[0.04] shadow-[inset_0_0_0_1px_rgb(255_255_255/0.08)] p-2 md:min-h-[425px]">
+              <div className="relative h-[230px] overflow-hidden rounded-2xl md:h-[273px]">
                 {images?.[i] ? (
                   <img
                     src={images[i].src}
@@ -158,7 +158,7 @@ export function Platform({ content = homeContent }: { content?: PlatformContent 
                   c.visual
                 )}
               </div>
-              <div className="flex flex-1 flex-col p-6">
+              <div className="flex flex-1 flex-col p-4 pt-5">
                 <h3 className="text-base/6 font-semibold text-ink">{c.title}</h3>
                 <p className="mt-2 text-sm/6 text-body">{c.body}</p>
               </div>

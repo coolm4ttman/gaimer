@@ -63,9 +63,9 @@ const eventTypes: ('All' | EventType)[] = ['All', 'Modding jam', 'Workshop', 'Me
 const members = Array.from({ length: 14 }, (_, i) => `/community/member-${i + 1}.jpg`)
 
 const faqs: [string, string][] = [
-  ['How do I join the Gaimer community?', 'Join our Discord to chat with other modders straight away, or find an event near you and come along in person.'],
+  ['How do I join the GAIMER community?', 'Join our Discord to chat with other modders straight away, or find an event near you and come along in person.'],
   ['Do I need to be technical to get involved?', 'No. Plenty of members have never written code. If you can describe the mod you want, you’ll fit right in.'],
-  ['How do I find or host a Gaimer event?', 'Browse upcoming events on this page. To host your own, apply through the form and we’ll help with the rest.'],
+  ['How do I find or host a GAIMER event?', 'Browse upcoming events on this page. To host your own, apply through the form and we’ll help with the rest.'],
   ['What happens at a modding jam?', 'Teams pick a game and a theme, build a mod over a day or a weekend, then show it off. Everyone plays everyone else’s mods at the end.'],
   ['Can I be part of more than one community program?', 'Yes. Many community leaders also run events or take part in the creator programme.'],
   ['Do I need to speak English to take part?', 'No. There are channels and events in many languages, run by members around the world.'],
@@ -167,7 +167,7 @@ export function CommunityPage() {
           </a>
           <h1 className="mt-8 text-[44px]/[44px] font-bold tracking-[-2px] text-[oklch(0.1_0_0)] md:text-[80px]/[72px] md:tracking-[-4px]">
             <span className="block">Welcome to the</span>
-            <span className="block">Gaimer community</span>
+            <span className="block">GAIMER community</span>
           </h1>
           <p className="mt-8 max-w-[672px] text-xl/[25px] font-[480] tracking-[-0.5px] text-[rgb(95_95_93)]">
             Mod alongside thousands of players, creators and tinkerers. Whether it’s your first mod or your fiftieth,
@@ -178,7 +178,7 @@ export function CommunityPage() {
               Browse events
             </a>
             <a href={DISCORD_URL} className={outline}>
-              Join Gaimer on Discord
+              Join GAIMER on Discord
             </a>
           </div>
         </div>
@@ -241,7 +241,7 @@ export function CommunityPage() {
           <span className="text-[oklch(0.1_0_0)]">Modding jams, game nights, workshops.</span>
           <br />
           Every event is different, but they all share the same energy: a room full of people shipping mods that
-          actually work. Events are run by community members, with support from Gaimer.
+          actually work. Events are run by community members, with support from GAIMER.
         </p>
         <dl className="mx-auto mt-16 grid max-w-[1120px] grid-cols-2 gap-y-10 md:grid-cols-4">
           {stats.map(([v, l], i) => (
@@ -258,7 +258,7 @@ export function CommunityPage() {
       <section id="events" className="scroll-mt-16 px-4 py-24 md:py-32">
         <div className="mx-auto flex max-w-[640px] flex-col items-center text-center">
           <h2 className="text-[32px]/[1.1] font-semibold tracking-[-1.2px] text-balance text-[oklch(0.1_0_0)] md:text-5xl/[52.8px]">
-            Join or host a Gaimer community event near you
+            Join or host a GAIMER community event near you
           </h2>
           <a href={DISCORD_URL} className={`mt-8 ${filled}`}>
             Apply here
@@ -291,9 +291,9 @@ export function CommunityPage() {
           className="pointer-events-none absolute top-0 left-1/2 h-[420px] w-[760px] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgb(255_60_112/0.35),rgb(123_63_228/0.25)_45%,transparent_70%)] blur-3xl"
         />
         <div className="relative mx-auto flex max-w-[1120px] flex-col items-center text-center">
-          <h2 className="text-[32px]/[1.1] font-semibold tracking-[-1.2px] text-[oklch(0.1_0_0)] md:text-5xl/[52.8px]">Partner with Gaimer</h2>
+          <h2 className="text-[32px]/[1.1] font-semibold tracking-[-1.2px] text-[oklch(0.1_0_0)] md:text-5xl/[52.8px]">Partner with GAIMER</h2>
           <p className="mt-10 max-w-[512px] text-lg/[27px] text-[rgb(95_95_93)]">
-            Partnerships are for studios, mod platforms, creators and educators who want to work with Gaimer formally.
+            Partnerships are for studios, mod platforms, creators and educators who want to work with GAIMER formally.
             If you run a modding community, make content, teach game development or want official mod support for your
             game, talk to our partnerships team.
           </p>

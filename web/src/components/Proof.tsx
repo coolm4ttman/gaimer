@@ -1,60 +1,64 @@
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import { DARK_LOGOS, games } from '../data/games'
 
-// CONCEPT stories: fictional creators, quotes and numbers for this concept site (disclosed under the carousel).
+// CONCEPT stories: fictional creators, quotes and numbers for this concept site.
 const stories = [
   {
-    team: 'NIGHTFALL',
-    intro: 'Two friends rebuilt Skyrim as a survival horror game over one weekend, with dragons that hunt by sound.',
-    quote: '“We described the mechanic and had it running in-game before lunch. That never happens.”',
+    game: 'skyrim',
+    intro: 'A solo modder rebuilt Skyrim as a survival horror game over one weekend, with dragons that hunt by sound.',
+    quote: '“I described the mechanic and had it running in-game before lunch. That never happens.”',
     stats: [
       ['48h', 'from idea to release'],
-      ['0', 'lines written by hand'],
-      ['#1', 'trending mod that week'],
+      ['14', 'mechanics added'],
+      ['220k', 'downloads'],
     ],
     person: 'Maya Okafor',
-    role: 'Co-creator, Nightfall',
+    role: 'Solo modder, Skyrim',
   },
   {
-    team: 'PIXELFORGE',
+    game: 'minecraft',
     intro: 'A first-time modder shipped a full co-op base-building mode for Minecraft in three days.',
-    quote: '“I’d never written a line of Java. Gaimer read the game, explained it, and built it with me.”',
+    quote: '“I’d never written a line of Java. GAIMER read the game, explained it, and built it with me.”',
     stats: [
-      ['3 days', 'to a working co-op build'],
+      ['3 days', 'from idea to release'],
       ['12', 'mechanics added'],
-      ['4.9★', 'average community rating'],
+      ['85k', 'downloads'],
     ],
     person: 'Leo Brandt',
-    role: 'Creator, Pixelforge',
+    role: 'Solo modder, Minecraft',
   },
   {
-    team: 'IRONCLAD',
-    intro: 'A veteran Cyberpunk 2077 mod team moved their whole pipeline to Gaimer and doubled how often they ship.',
-    quote: '“Hot reload alone changed how we work. We iterate inside the game now, not around it.”',
+    game: 'cyberpunk-2077',
+    intro: 'A long-time Cyberpunk 2077 modder moved their whole workflow to GAIMER and now ships twice as often.',
+    quote: '“Hot reload alone changed how I work. I iterate inside the game now, not around it.”',
     stats: [
-      ['2×', 'faster release cadence'],
-      ['30+', 'mods maintained'],
-      ['0', 'broken saves since'],
+      ['5 days', 'from idea to release'],
+      ['21', 'mechanics added'],
+      ['310k', 'downloads'],
     ],
     person: 'Sam Whitlock',
-    role: 'Lead modder, Ironclad',
+    role: 'Solo modder, Cyberpunk 2077',
   },
 ]
 
 type Story = (typeof stories)[number]
 
-function TeamMark({ name, className = '' }: { name: string; className?: string }) {
-  return <span className={`font-mono font-bold tracking-[0.2em] ${className}`}>{name}</span>
+// Logo of the game the story's mod was built for. Black logos turn white on the dark home page.
+function GameMark({ slug, className = '' }: { slug: string; className?: string }) {
+  const game = games.find((g) => g.slug === slug)!
+  const invert = DARK_LOGOS.has(slug) ? 'in-[.theme-dark]:brightness-0 in-[.theme-dark]:invert' : ''
+  return <img src={game.logo} alt={game.name} className={`w-auto object-contain ${invert} ${className}`} />
 }
 
 function StoryCard({ s, className = '' }: { s: Story; className?: string }) {
   return (
     <article className={`flex flex-col rounded-2xl bg-muted-surface px-6 pt-8 pb-6 md:px-10 md:pt-10 md:pb-8 ${className}`}>
-      <TeamMark name={s.team} className="text-xl text-ink" />
-      <div className="mt-12 grid flex-1 items-end gap-8 md:grid-cols-[1fr_180px] md:gap-10">
+      <GameMark slug={s.game} className="h-9 max-w-[220px] self-start object-left" />
+      <div className="mt-6 grid items-start gap-8 md:grid-cols-[1fr_180px] md:gap-10">
         <div>
           <p className="text-sm/6 text-body">{s.intro}</p>
-          <blockquote className="mt-6 border-l border-ink/60 pl-5 text-xl/7 font-[480] text-[oklch(0.3_0.001_107)] md:text-2xl/8">
+          <blockquote className="mt-6 border-l border-ink/60 pl-5 text-xl/7 font-[480] text-ink/90 md:text-2xl/8">
             {s.quote}
           </blockquote>
         </div>
@@ -67,9 +71,9 @@ function StoryCard({ s, className = '' }: { s: Story; className?: string }) {
           ))}
         </dl>
       </div>
-      <div className="mt-12 flex items-center justify-between">
+      <div className="mt-8 flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <div className="brand-gradient flex size-12 items-center justify-center rounded-lg font-semibold text-white">
+          <div className="download-gradient flex size-12 items-center justify-center rounded-lg font-semibold text-white">
             {s.person
               .split(' ')
               .map((w) => w[0])
@@ -80,7 +84,7 @@ function StoryCard({ s, className = '' }: { s: Story; className?: string }) {
             <div className="text-xs text-body">{s.role}</div>
           </div>
         </div>
-        <a href="#cta" className="inline-flex items-center gap-2 rounded-md bg-surface px-3 py-2 text-[13px] font-semibold shadow-button">
+        <a href="#cta" className="inline-flex shrink-0 items-center gap-2 rounded-md bg-surface px-3 py-2 text-[13px] whitespace-nowrap font-semibold text-ink shadow-button">
           Read story <ArrowRight className="size-3.5" />
         </a>
       </div>
@@ -93,8 +97,8 @@ function StoryCard({ s, className = '' }: { s: Story; className?: string }) {
 const ACTIVE_W = 720
 const TILE_W = 304
 const GAP = 8
-const CARD_H = 528
-const TILE_H = 400
+const CARD_H = 410
+const TILE_H = 320
 const SPAN = 4 // tiles rendered each side; the outer ones sit off-screen so new tiles slide in from the edge
 const AUTOPLAY_MS = 6000
 
@@ -145,7 +149,7 @@ export function Proof() {
           The proof is in the mods
         </h2>
         <p className="mx-auto mt-4 max-w-[420px] text-base/6 text-body">
-          These creators built the mods they always wanted with Gaimer. Now their communities play them every day.
+          These creators built the mods they always wanted with GAIMER. Now their communities play them every day.
         </p>
         <a href="#cta" className="mt-8 inline-flex items-center gap-1.5 py-2.5 text-sm font-[480] text-ink hover:opacity-70">
           See all creator stories <ChevronRight className="size-3.5" />
@@ -153,7 +157,7 @@ export function Proof() {
       </div>
 
       {isLg ? (
-        <div className="relative mt-16 h-[528px]" aria-live="polite">
+        <div className="relative mt-16 h-[410px]" aria-live="polite">
           {slots.map((abs) => {
             const off = abs - pos
             const s = stories[wrap(abs, n)]
@@ -174,17 +178,17 @@ export function Proof() {
                   className={`absolute inset-y-0 left-0 w-[720px] transition-opacity duration-300 ${active ? 'opacity-100 delay-200' : 'pointer-events-none opacity-0'}`}
                   aria-hidden={!active}
                 >
-                  <StoryCard s={s} className="h-[528px]" />
+                  <StoryCard s={s} className="h-[410px]" />
                 </div>
                 <button
                   onClick={() => setPos(abs)}
-                  aria-label={`Show story: ${s.team}`}
+                  aria-label={`Show story: ${games.find((g) => g.slug === s.game)!.short}`}
                   tabIndex={active ? -1 : 0}
-                  className={`absolute inset-0 flex items-center justify-center text-2xl text-ink/80 transition-opacity duration-300 hover:bg-black/[0.03] ${
+                  className={`absolute inset-0 flex items-center justify-center text-2xl text-ink/80 transition-opacity duration-300 hover:bg-ink/[0.04] ${
                     active ? 'pointer-events-none opacity-0' : 'opacity-100'
                   }`}
                 >
-                  <TeamMark name={s.team} />
+                  <GameMark slug={s.game} className="max-h-14 max-w-[70%]" />
                 </button>
               </div>
             )
@@ -200,19 +204,18 @@ export function Proof() {
         <button
           onClick={() => setPos((p) => p - 1)}
           aria-label="Previous story"
-          className="flex size-[46px] items-center justify-center rounded-md bg-surface shadow-button"
+          className="flex size-[46px] items-center justify-center rounded-md bg-surface text-ink shadow-button transition-colors hover:bg-ink/[0.08]"
         >
           <ChevronLeft className="size-4" />
         </button>
         <button
           onClick={() => setPos((p) => p + 1)}
           aria-label="Next story"
-          className="flex size-[46px] items-center justify-center rounded-md bg-surface shadow-button"
+          className="flex size-[46px] items-center justify-center rounded-md bg-surface text-ink shadow-button transition-colors hover:bg-ink/[0.08]"
         >
           <ChevronRight className="size-4" />
         </button>
       </div>
-      <p className="mt-6 text-center text-xs text-subtle">Concept site: creators, quotes and figures are illustrative.</p>
     </section>
   )
 }

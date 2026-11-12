@@ -11,10 +11,10 @@ const resourceLinks: { title: string; line: string; to: string }[] = [
   { title: 'Blog', line: 'Ideas, updates, stories.', to: '/resources' },
   { title: 'Mod loaders', line: 'Connect the tools you already use.', to: '/resources' },
   { title: 'Guides', line: 'Learn as you mod.', to: '/resources' },
-  { title: 'Academy', line: 'Learn to mod with Gaimer.', to: '/resources' },
+  { title: 'Academy', line: 'Learn to mod with GAIMER.', to: '/resources' },
   { title: 'Templates', line: 'Start from a working mod.', to: '/resources' },
   { title: 'Docs', line: 'Everything under the hood.', to: '/resources' },
-  { title: 'Changelog', line: 'What’s new in Gaimer.', to: '/resources' },
+  { title: 'Changelog', line: 'What’s new in GAIMER.', to: '/resources' },
   { title: 'Creator stories', line: 'See what modders have built.', to: '/creators' },
 ]
 
