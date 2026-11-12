@@ -1,6 +1,7 @@
 import { ArrowRight } from 'lucide-react'
 import { BorderBeam } from 'border-beam'
 import { AppWindow } from './AppWindow'
+import { ScaleToFit } from './ScaleToFit'
 
 // border-beam's colour layers are sized in pixels for small cards, so on a window this big they shrink to dots.
 // These overrides rescale them to the window: a bright colourful stroke and a matching inner glow.
@@ -43,12 +44,15 @@ export function Hero() {
           </a>
         </div>
 
-        <div className="relative mt-14 overflow-hidden rounded-2xl p-4 sm:p-12 md:mt-16 lg:p-20">
+        <div className="relative -mr-6 mt-10 overflow-hidden rounded-l-2xl py-4 pl-4 sm:mr-0 sm:rounded-2xl sm:p-12 md:mt-16 lg:p-20">
           <HeroBackdrop />
           {/* Animated glow riding the app window's border (border-beam, libraries.dev/beam). */}
-          <BorderBeam size="md" colorVariant="colorful" duration={6} theme="dark" css={BEAM_CSS} className="relative">
-            <AppWindow />
-          </BorderBeam>
+          {/* Phones: the full desktop window at a readable size, running off the right edge like Cursor's hero. */}
+          <ScaleToFit width={760} minScale={0.7}>
+            <BorderBeam size="md" colorVariant="colorful" duration={6} theme="dark" css={BEAM_CSS} className="relative">
+              <AppWindow />
+            </BorderBeam>
+          </ScaleToFit>
         </div>
       </div>
     </section>

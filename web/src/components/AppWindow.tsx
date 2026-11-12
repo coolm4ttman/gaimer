@@ -95,7 +95,7 @@ function AgentPanel() {
   const added = turn.files.reduce((n, f) => n + f[1], 0)
   const removed = turn.files.reduce((n, f) => n + f[2], 0)
   return (
-    <aside className="hidden w-[268px] shrink-0 flex-col border-r border-white/[0.07] bg-[#0f0f13] text-[#ecebe8] lg:flex">
+    <aside className="flex w-[268px] shrink-0 flex-col border-r border-white/[0.07] bg-[#0f0f13] text-[#ecebe8]">
       <div className="flex items-center gap-3 border-b border-white/[0.07] px-3 py-2 text-[10.5px]">
         <span className="font-medium text-[#ecebe8]">Agent</span>
         <span className="text-[#5c5c66]">Components</span>
@@ -214,7 +214,7 @@ function Field({ label, value }: { label: string; value: number }) {
 function Inspector({ selected, onSelect }: { selected: number; onSelect: (i: number) => void }) {
   const item = scene[selected]
   return (
-    <aside className="hidden w-[210px] shrink-0 flex-col overflow-hidden border-l border-white/[0.07] bg-[#141416] text-white md:flex">
+    <aside className="flex w-[210px] shrink-0 flex-col overflow-hidden border-l border-white/[0.07] bg-[#141416] text-white">
       <div className="flex items-start justify-between px-3 pt-2.5">
         <div>
           <div className="text-[8px] tracking-[0.15em] text-white/35 uppercase">Inspector</div>
@@ -345,7 +345,7 @@ export function AppWindow() {
         <span className="flex items-center gap-1.5 font-semibold tracking-wide text-white">
           <img src="/brand/icon.svg" alt="" className="size-4" /> GAIMER
         </span>
-        <span className="hidden max-w-[260px] truncate text-white/50 sm:block">/ {PROJECT}</span>
+        <span className="block max-w-[260px] truncate text-white/50">/ {PROJECT}</span>
         <span className="flex rounded-md bg-white/[0.06] p-0.5">
           {(
             [
@@ -366,14 +366,14 @@ export function AppWindow() {
           <span className="hidden items-center gap-1.5 rounded-md bg-white/[0.05] py-0.5 pr-1 pl-2 text-white/30 shadow-[inset_0_0_0_1px_rgb(255_255_255/0.07)] xl:flex">
             Run mod command <span className="rounded bg-white/[0.07] px-1.5 text-white/50">Run</span>
           </span>
-          <span className="hidden text-white/40 sm:inline">Live</span>
-          <span className="hidden rounded-md bg-white/[0.07] px-2 py-0.5 text-white/75 sm:inline">Undo</span>
-          <span className="hidden rounded-md bg-white/[0.07] px-2 py-0.5 text-white/75 sm:inline">Redo</span>
+          <span className="text-white/40">Live</span>
+          <span className="rounded-md bg-white/[0.07] px-2 py-0.5 text-white/75">Undo</span>
+          <span className="rounded-md bg-white/[0.07] px-2 py-0.5 text-white/75">Redo</span>
           <span className="rounded-md bg-[#5b3ee6] px-2 py-0.5 text-white">Play</span>
           <span className="download-gradient rounded-md px-2 py-0.5 text-white">Export</span>
         </span>
       </div>
-      <div className="flex h-[300px] sm:h-[440px] md:h-[520px]">
+      <div className="flex h-[520px]">
         <AgentPanel />
         {tab === 'visual' ? (
           <>

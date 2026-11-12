@@ -79,7 +79,7 @@ export const games: Game[] = [
     short: 'Red Dead 2',
     logo: '/games/rdr2.png',
     logoClass: 'h-14',
-    loaders: ['ScriptHookRDR2', 'Lenny’s Mod Loader'],
+    loaders: ['RedM'],
     blurb: 'Change how the frontier plays, from horse stamina to bounty hunting, without hand-writing a line of script.',
     ideas: ['Rebalance horse stamina and bonding', 'Add a bounty board in every town', 'Make camp upgrades cheaper'],
   },

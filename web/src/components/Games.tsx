@@ -8,7 +8,7 @@ import { games } from '../data/games'
 
 export function Games() {
   return (
-    <section id="games" className="scroll-mt-16 px-6 py-24 md:py-32">
+    <section id="games" className="scroll-mt-16 px-4 py-16 sm:px-6 md:py-32">
       <article className="container-l grid gap-2 rounded-3xl bg-white/[0.04] p-2 shadow-[inset_0_0_0_1px_rgb(255_255_255/0.08)] lg:grid-cols-[1fr_380px]">
         <div className="grid grid-cols-2 overflow-hidden rounded-2xl bg-[#1a1a1a] sm:grid-cols-3">
           {games.map((g, i) => (

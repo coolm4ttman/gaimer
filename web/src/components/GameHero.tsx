@@ -11,7 +11,7 @@ export function GameHero({ game }: { game: Game }) {
       {/* Art and its dark centre fade out at the bottom, into the page's shader below. */}
       <div aria-hidden="true" className="absolute inset-0 bg-black [mask-image:linear-gradient(to_bottom,black_65%,transparent)]">
         <img src={game.hero} alt="" className="absolute inset-0 size-full object-cover" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_700px_at_50%_50%,#000_0%,rgb(0_0_0/0.92)_55%,rgb(0_0_0/0.55)_82%,transparent_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_75%_45%_at_50%_50%,#000_0%,rgb(0_0_0/0.85)_50%,rgb(0_0_0/0.4)_85%,transparent_100%)] md:bg-[radial-gradient(circle_700px_at_50%_50%,#000_0%,rgb(0_0_0/0.92)_55%,rgb(0_0_0/0.55)_82%,transparent_100%)]" />
       </div>
       <div className="relative z-10 flex flex-col items-center text-center">
         <h1 className="flex flex-col items-center text-[44px]/[44px] font-bold tracking-[-2px] text-ink md:text-[80px]/[72px] md:tracking-[-4px]">

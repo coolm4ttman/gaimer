@@ -7,10 +7,10 @@ import { useState, type ReactNode } from 'react'
 // Inspector, saved versions and Export mod). Viewports are real captures from gaimer-platform's evidence; results in
 // the verifier log come from its acceptance report, with an illustrative log format.
 
-const panel = 'rounded-xl bg-[#0f0f13] text-[#ecebe8] shadow-[0_0_0_1px_rgb(255_255_255/0.08),0_30px_60px_-20px_rgb(0_0_0/0.65)]'
-const card = 'rounded-lg border border-white/[0.07] bg-[#16161c]'
+export const panel = 'rounded-xl bg-[#0f0f13] text-[#ecebe8] shadow-[0_0_0_1px_rgb(255_255_255/0.08),0_30px_60px_-20px_rgb(0_0_0/0.65)]'
+export const card = 'rounded-lg border border-white/[0.07] bg-[#16161c]'
 
-function Bar({ title, tab }: { title: string; tab?: 'visual' | 'code' }) {
+export function Bar({ title, tab }: { title: string; tab?: 'visual' | 'code' }) {
   return (
     <div className="flex h-8 items-center gap-2 border-b border-white/[0.07] bg-[#111113] px-3 text-[10px]">
       <img src="/brand/icon.svg" alt="" className="size-3.5" />
@@ -350,7 +350,7 @@ const rows: { title: string; body: string; art: string; focus?: string; visual: 
 
 export function Showcase() {
   return (
-    <section id="how-it-works" className="scroll-mt-16 px-6 py-24 md:py-32">
+    <section id="how-it-works" className="scroll-mt-16 px-4 py-16 sm:px-6 md:py-32">
       <div className="container-l space-y-6">
         {rows.map((r, i) => (
           <article key={r.title} className="grid gap-2 rounded-3xl bg-white/[0.04] p-2 shadow-[inset_0_0_0_1px_rgb(255_255_255/0.08)] lg:grid-cols-2">

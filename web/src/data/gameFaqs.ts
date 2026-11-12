@@ -41,11 +41,11 @@ export const gameFaqs: Record<string, [string, string][]> = {
     ['Can I share the mods I build?', 'Yes. GAIMER packages your mod for ModEngine 2 with install notes, ready to share with friends or upload.'],
   ],
   'red-dead-redemption-2': [
-    ['What do I need installed?', 'A PC (Mac coming soon) with Red Dead Redemption 2 installed. GAIMER sets up ScriptHookRDR2 for you on first run.'],
+    ['What do I need installed?', 'A PC (Mac coming soon) with Red Dead Redemption 2 installed. GAIMER sets up RedM for you on first run.'],
     ['Can I get banned for using mods in Red Dead Redemption 2?', 'GAIMER builds mods for story mode only. Never load them into Red Dead Online, where modified game clients can be banned.'],
-    ['Which modding tools does GAIMER use for Red Dead 2?', 'GAIMER works with ScriptHookRDR2 and Lenny’s Mod Loader, the tools the Red Dead modding community already relies on.'],
+    ['Which modding tools does GAIMER use for Red Dead 2?', 'RedM, the RDR2 sister project to FiveM. GAIMER builds Red Dead mods the same way it builds GTA V mods: native Lua resources, tested on a real server.'],
     ['Do I need to know how to code?', 'No. Describe the mechanic, job or rebalance you want and GAIMER writes the script. The code is always yours to read and edit.'],
     ['What happens when Rockstar patches the game?', 'GAIMER checks your game version against your tools and tells you when something needs updating, with your backups kept safe.'],
-    ['Can I share the mods I build?', 'Yes. GAIMER packages your mod for Lenny’s Mod Loader with install notes, ready to share or upload.'],
+    ['Can I share the mods I build?', 'Yes. Export the tested resource on Pro and add it to any RedM server, or share it with friends.'],
   ],
 }

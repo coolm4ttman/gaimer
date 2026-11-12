@@ -62,10 +62,10 @@ function StoryCard({ s, className = '' }: { s: Story; className?: string }) {
             {s.quote}
           </blockquote>
         </div>
-        <dl className="space-y-4">
+        <dl className="grid grid-cols-3 gap-3 md:block md:space-y-4">
           {s.stats.map(([v, l]) => (
             <div key={l}>
-              <dd className="text-[32px]/[1.1] font-[480] tracking-[-1px] text-ink">{v}</dd>
+              <dd className="text-[22px]/[1.1] font-[480] tracking-[-0.6px] text-ink md:text-[32px]/[1.1] md:tracking-[-1px]">{v}</dd>
               <dt className="mt-1 text-xs text-body">{l}</dt>
             </div>
           ))}
@@ -140,7 +140,7 @@ export function Proof() {
   return (
     <section
       id="proof"
-      className="scroll-mt-16 overflow-hidden pt-26 pb-13 md:pt-40 md:pb-20"
+      className="scroll-mt-16 overflow-hidden pt-16 pb-13 md:pt-40 md:pb-20"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >

@@ -155,7 +155,7 @@ function Plans() {
   const [tier, setTier] = useState(0)
   const pro = proTiers[tier]
   return (
-    <div className="mx-auto mt-12 grid max-w-[1000px] items-start gap-4 md:grid-cols-3">
+    <div className="mx-auto mt-12 grid max-w-[560px] items-start gap-4 lg:max-w-[1000px] lg:grid-cols-3">
       <PlanColumn
         name="Free"
         blurb="Try GAIMER and build your first mods."

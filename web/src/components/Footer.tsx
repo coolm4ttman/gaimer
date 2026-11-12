@@ -11,7 +11,6 @@ const links: [string, string][] = [
   ['How it works', '/#how-it-works'],
   ['Games', '/games'],
   ['Pricing', '/pricing'],
-  ['Creators', '/creators'],
   ['Privacy', '/'],
 ]
 

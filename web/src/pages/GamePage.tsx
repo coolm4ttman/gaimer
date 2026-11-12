@@ -1,8 +1,8 @@
 import { useParams } from 'react-router'
 import { Faq } from '../components/Faq'
 import { GameHero } from '../components/GameHero'
-import { Platform } from '../components/Platform'
-import { gameContent } from '../data/gameContent'
+import { GameShowcase } from '../components/GameShowcase'
+import { gameShowcase } from '../data/gameShowcase'
 import { gameFaqs } from '../data/gameFaqs'
 import { games } from '../data/games'
 import { NotFoundPage } from './NotFoundPage'
@@ -19,7 +19,7 @@ export function GamePage() {
         <GameHero game={game} />
       </div>
       <div className="grad-up">
-        <Platform content={gameContent[game.slug]} />
+        <GameShowcase slug={game.slug} name={game.short} content={gameShowcase[game.slug]} />
       </div>
       <div className="grad-down">
         <Faq items={gameFaqs[game.slug]} />
