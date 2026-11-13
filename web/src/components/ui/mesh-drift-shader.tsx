@@ -407,6 +407,9 @@ export function ShaderBackground({ className, colors, hue }: { className?: strin
     let disposed = false
     const start = performance.now()
     const timeAnimated = Math.abs(UNIFORMS.timeScale) > 0.0001
+    // The cursor effect needs a mouse; on touch screens skip it (and its scroll listener, which re-measured the
+    // canvas on every scroll and caused flicker on phones).
+    const cursorEnabled = UNIFORMS.cursorEnabled && window.matchMedia('(hover: hover) and (pointer: fine)').matches
 
     const resizeCanvas = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2)
@@ -471,7 +474,7 @@ export function ShaderBackground({ className, colors, hue }: { className?: strin
       requestRender()
     }
     window.addEventListener('resize', updateLayout)
-    if (UNIFORMS.cursorEnabled) {
+    if (cursorEnabled) {
       window.addEventListener('pointermove', onPointerMove, { passive: true })
       window.addEventListener('pointercancel', onPointerLeave)
       window.addEventListener('scroll', updateLayout, true)
@@ -518,7 +521,7 @@ export function ShaderBackground({ className, colors, hue }: { className?: strin
       ctx.uniform4f(uni.space, UNIFORMS.offsetX, UNIFORMS.offsetY, mouseX, mouseY)
       ctx.uniform4f(
         uni.cursor,
-        UNIFORMS.cursorEnabled ? cursorPresence : 0,
+        cursorEnabled ? cursorPresence : 0,
         UNIFORMS.cursorEffect,
         UNIFORMS.cursorStrength,
         UNIFORMS.cursorRadius,
@@ -539,7 +542,7 @@ export function ShaderBackground({ className, colors, hue }: { className?: strin
       intersectionObserver.disconnect()
       document.removeEventListener('visibilitychange', onVisibilityChange)
       window.removeEventListener('resize', updateLayout)
-      if (UNIFORMS.cursorEnabled) {
+      if (cursorEnabled) {
         window.removeEventListener('pointermove', onPointerMove)
         window.removeEventListener('pointercancel', onPointerLeave)
         window.removeEventListener('scroll', updateLayout, true)

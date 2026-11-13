@@ -43,7 +43,13 @@ function Layout() {
     <>
       <ScrollToTop />
       {/* Dark pages: one animated mesh behind everything; the grad-down/grad-up sections fade it in and out. */}
-      {dark && <ShaderBackground className="pointer-events-none fixed inset-0 -z-10" colors={SHADER_COLOURS} hue={0} />}
+      {/* Sized to the large viewport (100lvh) so the phone address bar showing and hiding doesn't resize the canvas,
+          which would clear it and flicker. */}
+      {dark && (
+        <div className="pointer-events-none fixed inset-x-0 top-0 -z-10 h-lvh">
+          <ShaderBackground colors={SHADER_COLOURS} hue={0} />
+        </div>
+      )}
       <Nav />
       <main>
         <Outlet />
