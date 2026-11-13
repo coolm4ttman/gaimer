@@ -36,7 +36,7 @@ export function GameIdeas({ name, content: c }: { name: string; content: Content
                   <p className="mt-4 max-w-[440px] text-base/6 text-white/65">{idea.result}</p>
                 </div>
                 {/* Square art panel (as on the home page) holding a full-height slice of the GAIMER app. */}
-                <div className="relative h-[560px] overflow-hidden rounded-2xl lg:aspect-square lg:h-auto">
+                <div className="relative h-[440px] overflow-hidden sm:h-[560px] rounded-2xl lg:aspect-square lg:h-auto">
                   <img
                     src={idea.image}
                     alt=""
@@ -45,8 +45,8 @@ export function GameIdeas({ name, content: c }: { name: string; content: Content
                     style={{ objectPosition: idea.focus ?? '50% 50%' }}
                     className={`absolute inset-0 size-full ${idea.contain ? 'bg-gradient-to-b from-[#9fd3ff] to-[#d8f0c8] object-contain pt-6' : 'object-cover'}`}
                   />
-                  <div className="absolute inset-3 sm:inset-[7%]">
-                    <div className={`${panel.replace('bg-[#0f0f13] ', '')} flex h-full flex-col overflow-hidden bg-[#0f0f13]/80 text-[11.5px]/[1.55] backdrop-blur`}>
+                  <div className="absolute inset-x-3 bottom-3 sm:inset-[7%]">
+                    <div className={`${panel.replace('bg-[#0f0f13] ', '')} flex flex-col overflow-hidden bg-[#0f0f13]/80 sm:h-full text-[11.5px]/[1.55] backdrop-blur`}>
                       <Bar title={`${idea.tag} mod`} />
                       <div className="flex items-center gap-3 border-b border-white/[0.07] px-3 py-1.5 text-[10px]">
                         <span className="font-medium">Agent</span>
@@ -65,7 +65,7 @@ export function GameIdeas({ name, content: c }: { name: string; content: Content
                             </li>
                           ))}
                         </ul>
-                        <p className="text-[#d3d2d8]">{idea.result}</p>
+                        <p className="hidden text-[#d3d2d8] sm:block">{idea.result}</p>
                         <div className="rounded-lg border border-[#4ccf8b]/30 bg-[#4ccf8b]/[0.07] p-2.5">
                           <div className="flex items-center gap-2 font-medium">
                             <span className="flex size-5 items-center justify-center rounded-full bg-[#4ccf8b] text-[#0f0f13]">
@@ -75,7 +75,7 @@ export function GameIdeas({ name, content: c }: { name: string; content: Content
                             <span className="ml-auto text-[9.5px] font-normal text-[#80808c]">Saved v1</span>
                           </div>
                         </div>
-                        <div className="mt-auto">
+                        <div className="mt-auto hidden sm:block">
                           <div className="text-[9px] tracking-[0.15em] text-[#5c5c66] uppercase">Files</div>
                           <ul className="mt-1.5 grid grid-cols-2 gap-1.5">
                             {c.toolchain.files.map((f) => (
@@ -87,7 +87,7 @@ export function GameIdeas({ name, content: c }: { name: string; content: Content
                           </ul>
                         </div>
                       </div>
-                      <div className="m-3 mt-0 rounded-xl border border-[#8b5cf6]/55 bg-[#16161c]/80 px-3 py-2 text-[11px] text-[#5c5c66] shadow-[0_0_0_3px_rgb(139_92_246/0.14)]">
+                      <div className="m-3 mt-0 hidden rounded-xl sm:block border border-[#8b5cf6]/55 bg-[#16161c]/80 px-3 py-2 text-[11px] text-[#5c5c66] shadow-[0_0_0_3px_rgb(139_92_246/0.14)]">
                         Describe a change, or ask a question
                       </div>
                     </div>
@@ -131,7 +131,7 @@ export function GameToolchain({ name, hero, content: c }: { name: string; hero: 
               </dl>
               <div className="border-t border-white/[0.07] px-4 py-3">
                 <div className="text-[10px] tracking-[0.15em] text-white/35 uppercase">Example project</div>
-                <ul className="mt-2 grid grid-cols-2 gap-1.5">
+                <ul className="mt-2 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
                   {t.files.map((f) => (
                     <li key={f} className="flex items-center gap-1.5 truncate rounded-md bg-white/[0.05] px-2 py-1 font-mono text-[11px] text-white/75">
                       <FileCode2 className="size-3 shrink-0 text-white/35" />
