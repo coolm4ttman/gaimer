@@ -50,7 +50,7 @@ export function Footer() {
 
       <div className="relative z-10 px-2 md:px-20">
         <footer className="mx-auto flex max-w-[1280px] flex-col items-center justify-between gap-6 rounded-b-3xl border border-t-0 border-footer-border bg-footer px-6 py-6 md:flex-row md:px-10">
-          <Logo onDark={dark} />
+          <Logo onDark={dark} white={dark} />
           <nav>
             <ul className="flex flex-wrap items-center justify-center gap-x-7 gap-y-2">
               {links.map(([label, to]) => (

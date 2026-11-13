@@ -15,7 +15,7 @@ interface ModMarker {
 const defaultMarkers: ModMarker[] = [
   { id: 'sf', location: [37.78, -122.44], status: 'Building', game: 'GTA V', mod: 'Grappling hook' },
   { id: 'london', location: [51.51, -0.13], status: 'Shipped', game: 'Skyrim', mod: 'Dragon loot tables' },
-  { id: 'tokyo', location: [35.68, 139.65], status: 'Building', game: 'Elden Ring', mod: 'Co-op revive' },
+  { id: 'tokyo', location: [35.68, 139.65], status: 'Building', game: 'Fallout 4', mod: 'Settler shops' },
   { id: 'paris', location: [48.86, 2.35], status: 'Building', game: 'Cyberpunk 2077', mod: 'Netrunner perks' },
   { id: 'sydney', location: [-33.87, 151.21], status: 'Shipped', game: 'Minecraft', mod: 'Co-op base building' },
   { id: 'nyc', location: [40.71, -74.01], status: 'Shipped', game: 'Red Dead 2', mod: 'Stamina rebalance' },

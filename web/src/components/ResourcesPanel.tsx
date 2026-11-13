@@ -19,9 +19,9 @@ const resourceLinks: { title: string; line: string; to: string }[] = [
 ]
 
 const announcement = {
-  image: '/games/cards/elden-ring-2.jpg',
-  title: 'Hot reload now works with Elden Ring: tune boss fights without restarting the game',
-  to: '/games/elden-ring',
+  image: '/games/mods/fallout-4-4.jpg',
+  title: 'Fallout 4 support: build settlements and survival systems with GAIMER',
+  to: '/games/fallout-4',
 }
 
 const raised = 'shadow-[0_0_0_1px_#fff,0_0_0_2px_rgb(119_119_113/0.16),0_8px_24px_-8px_rgb(0_0_0/0.12)]'

@@ -322,7 +322,7 @@ const rows: { title: string; body: string; art: string; focus?: string; visual: 
   {
     title: 'Describe it. GAIMER asks first.',
     body: 'Tell GAIMER what you want in plain English. When something is unclear it asks instead of guessing, then plans the change and builds it.',
-    art: '/games/backdrops/elden-ring.jpg',
+    art: '/games/backdrops/fallout-4.jpg',
     visual: <AskVisual />,
   },
   {

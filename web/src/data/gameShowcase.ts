@@ -1,363 +1,157 @@
-// Per-game content for the four feature boxes on each game page (same format as the home page). Each game is modded
-// differently, so every box names that game's real toolchain: the language GAIMER writes, how it tests the change,
-// the files it produces and how the finished mod is installed.
+// Game-page content: example mods you could build in each game, and how GAIMER fits that game's modding toolchain.
+// GTA V and RDR2 share the Cfx.re workflow (FiveM / RedM Lua resources tested on a real server).
 // PLACEHOLDER: only GTA V (via FiveM) is live in GAIMER today; the other games describe the intended workflow.
 
+export interface ModIdea {
+  tag: string
+  prompt: string
+  result: string
+  image: string // game screenshot that shows the kind of thing the mod adds (sources in public/games/SOURCES.md)
+  focus?: string // object-position for the crop
+  contain?: boolean // cut-out art (transparent PNG) shown whole on a sky gradient
+}
+
 export interface GameShowcase {
-  project: string
-  testIn: string // composer button label, e.g. "Test in Minecraft"
-  ask: {
+  intro: string
+  ideas: ModIdea[]
+  toolchain: {
     body: string
-    earlier: string
-    earlierResult: string
-    request: string
-    question: string
-    hint: string
-    options: string[]
-  }
-  test: {
-    title: string
-    body: string
-    badge: string
-    phases: [string, string][]
-    log: [string, string][]
-    passed: string[]
-  }
-  code: {
-    title: string
-    body: string
-    lang: 'lua' | 'java' | 'papyrus' | 'redscript' | 'csv' | 'cpp'
+    rows: [string, string][]
     files: string[]
-    active: number
-    snippet: string
-  }
-  ship: {
-    title: string
-    body: string
-    output: string
-    contents: string[]
-    install: string[]
   }
 }
 
 export const gameShowcase: Record<string, GameShowcase> = {
   'gta-v': {
-    project: 'Taxi Side Job',
-    testIn: 'Test in GTA',
-    ask: {
-      body: 'Describe a job, mechanic or mission in plain English. GAIMER asks about anything unclear, then writes a native FiveM resource in Lua.',
-      earlier: 'Add a taxi side job with fares across Los Santos.',
-      earlierResult: 'Press E in any taxi to start a shift. Fares spawn around the city and pay on drop-off.',
-      request: 'Add tips and a star rating for each ride.',
-      question: 'How should tips work?',
-      hint: 'I can scale tips by how fast and how smoothly you drive.',
-      options: ['Speed only', 'Smooth driving', 'Both'],
-    },
-    test: {
-      title: 'Tested on a real FiveM server first',
-      body: 'Every change runs on a licensed FiveM test server before you see it. If something breaks, GAIMER fixes it and tests again.',
-      badge: 'Tested on FiveM',
-      phases: [
-        ['Writing the Lua resource', '0:22'],
-        ['Starting a FiveM test server', '0:12'],
-        ['Driving a test fare', '0:41'],
+    intro: 'Jobs, businesses, chases and whole new systems for Los Santos, built as FiveM resources you can run on any server.',
+    ideas: [
+      { tag: 'Job', prompt: 'Add a taxi side job with tips and star ratings.', result: 'Shifts, fares across the city, tips for smooth driving and a rating saved per ride.', image: '/games/mods/gta-v-1.jpg' },
+      { tag: 'Business', prompt: 'Let players run a food truck with a supplier and a rush hour.', result: 'Buy stock, cook on the go, sell at marked spots and earn 1.5× from 18:00 to 21:00.', image: '/app/viewport-beach.jpg' },
+      { tag: 'Police', prompt: 'Make police chases smarter and harder to escape.', result: 'Units cut you off at junctions, call in a helicopter after two minutes and search your last seen spot.', image: '/games/mods/gta-v-3.jpg' },
+      { tag: 'Mechanic', prompt: 'Add a grappling hook that works on rooftops.', result: 'Aim and press E to zip to any ledge within 40 m, with a cooldown and rope physics.', image: '/games/mods/gta-v-4.jpg' },
+      { tag: 'World', prompt: 'Build an impound lot with a tow truck job.', result: 'A fenced lot, a dispatch desk and tow calls that pay when you drop a car at the gate.', image: '/app/viewport-impound.jpg' },
+      { tag: 'Economy', prompt: 'Add a stock market that reacts to what players do.', result: 'Prices move with sales, robberies and jobs completed, with a phone app to trade.', image: '/games/mods/gta-v-6.jpg' },
+    ],
+    toolchain: {
+      body: 'GAIMER builds GTA V mods as native FiveM resources, tests them on a real FiveM server and opens the scene in the GTA world editor.',
+      rows: [
+        ['Writes', 'Lua'],
+        ['Framework', 'FiveM'],
+        ['Tested on', 'A licensed FiveM test server'],
+        ['You get', 'A resource folder (.zip)'],
+        ['Install', 'Copy to resources/, add ensure to server.cfg'],
       ],
-      log: [
-        ['[HARNESS]', 'taxi_job started'],
-        ['[GAIMER]', 'shift started · vehicle=taxi'],
-        ['[GAIMER]', 'fare picked up · Vespucci'],
-        ['[GAIMER]', 'drop-off · paid $86 + $14 tip'],
-        ['[GAIMER]', 'rating saved · 5 stars'],
-      ],
-      passed: ['Resource loads', 'Fare loop', 'Tips + rating', 'No script errors'],
-    },
-    code: {
-      title: 'Edit the world or the Lua',
-      body: 'Open the scene in the GTA world editor to move pickups and markers, or read the Lua GAIMER wrote. Both stay in sync.',
-      lang: 'lua',
       files: ['fxmanifest.lua', 'client.lua', 'server.lua', 'config.lua'],
-      active: 2,
-      snippet: `-- Pay the fare plus a tip for smooth driving
-RegisterNetEvent('taxi:dropoff', function(fare, smooth)
-  local src = source
-  local tip = math.floor(fare * (smooth and 0.2 or 0.05))
-  exports.money:add(src, fare + tip)
-  TriggerClientEvent('taxi:rate', src, smooth and 5 or 3)
-end)`,
-    },
-    ship: {
-      title: 'Export a resource for any server',
-      body: 'Every change is a saved version you can undo. Export the exact resource that passed and drop it into your server.',
-      output: 'taxi_job.zip',
-      contents: ['fxmanifest.lua', 'client.lua', 'server.lua', 'config.lua'],
-      install: ['Copy taxi_job into resources/', 'Add ensure taxi_job to server.cfg', 'Restart the server'],
     },
   },
   minecraft: {
-    project: 'Torch Thief',
-    testIn: 'Test in Minecraft',
-    ask: {
-      body: 'Describe a block, mob or mechanic. GAIMER asks what it needs to know, then writes a Fabric mod in Java with its models and lang files.',
-      earlier: 'Create a mob that steals torches at night.',
-      earlierResult: 'Torch Thieves spawn after dark, grab the nearest torch and run. Kill one to get your torches back.',
-      request: 'Make them avoid lit areas.',
-      question: 'How bright is too bright?',
-      hint: 'I can make them flee above a light level you choose.',
-      options: ['Light 7+', 'Light 10+', 'Only torchlight'],
-    },
-    test: {
-      title: 'Tested in a real Minecraft client',
-      body: 'GAIMER builds your mod with Gradle, launches a Fabric dev client and runs game tests in a fresh world before you load it.',
-      badge: 'Tested on Fabric 1.21',
-      phases: [
-        ['Writing Java and assets', '0:28'],
-        ['Building with Gradle', '0:19'],
-        ['Running game tests', '0:34'],
+    intro: 'New mobs, blocks, dimensions and game modes, built as Fabric mods that run in single player or on your own server.',
+    ideas: [
+      { tag: 'Mob', prompt: 'Create a mob that steals torches at night.', result: 'Torch Thieves spawn after dark, grab the nearest torch and flee anything brighter than light level 10.', image: '/games/cards/minecraft-1.png', contain: true },
+      { tag: 'Multiplayer', prompt: 'Add a co-op base building mode.', result: 'Shared claims, a team storage chest and build permissions you set per friend.', image: '/games/cards/minecraft-3.png', contain: true },
+      { tag: 'Farming', prompt: 'Make crops grow faster near water.', result: 'Crops within four blocks of water grow 50% faster, with a particle so you can see it working.', image: '/games/heroes/minecraft.jpg', focus: '20% 70%' },
+      { tag: 'Block', prompt: 'Add a block that launches you into the air.', result: 'A Spring Pad crafted from slime and pistons, with a launch height you can set with redstone.', image: '/games/cards/minecraft-2.png', contain: true },
+      { tag: 'Dimension', prompt: 'Make a floating island dimension.', result: 'A new portal, sky islands with their own ores and a boss at the highest island.', image: '/games/heroes/minecraft.jpg', focus: '85% 30%' },
+      { tag: 'Item', prompt: 'Add a backpack that keeps items on death.', result: 'A craftable backpack with 18 slots that stays with you when you respawn.', image: '/games/heroes/minecraft.jpg', focus: '55% 60%' },
+    ],
+    toolchain: {
+      body: 'GAIMER writes Fabric mods in Java, builds them with Gradle and runs game tests in a Fabric dev client before you play.',
+      rows: [
+        ['Writes', 'Java, plus models, loot tables and lang files'],
+        ['Framework', 'Fabric (Forge and NeoForge planned)'],
+        ['Tested in', 'A Fabric dev client with game tests'],
+        ['You get', 'A mod .jar'],
+        ['Install', 'Drop into .minecraft/mods'],
       ],
-      log: [
-        ['[Gradle]', 'BUILD SUCCESSFUL in 18s'],
-        ['[Fabric]', 'Loading 1 mod: torchthief 1.0.0'],
-        ['[GameTest]', 'thief_spawns_at_night passed'],
-        ['[GameTest]', 'thief_steals_torch passed'],
-        ['[GameTest]', 'thief_flees_light_10 passed'],
-      ],
-      passed: ['Compiles', 'Mod loads', 'Spawn rules', 'Light check'],
-    },
-    code: {
-      title: 'Real Java you can open',
-      body: 'GAIMER registers the entity, writes its AI goals and adds the model, loot table and lang entries. Read or change any of it.',
-      lang: 'java',
       files: ['fabric.mod.json', 'TorchThiefEntity.java', 'FleeLightGoal.java', 'en_us.json'],
-      active: 2,
-      snippet: `public class FleeLightGoal extends Goal {
-  private final TorchThiefEntity thief;
-
-  @Override
-  public boolean canStart() {
-    // Run from anything brighter than light level 10
-    return thief.getWorld().getLightLevel(thief.getBlockPos()) >= 10;
-  }
-}`,
-    },
-    ship: {
-      title: 'One jar, ready for any Fabric install',
-      body: 'Every change is a saved version. Export a standard mod jar that runs anywhere with the same loader and Minecraft version.',
-      output: 'torchthief-1.0.0.jar',
-      contents: ['fabric.mod.json', 'com/torchthief/*.class', 'assets/torchthief/', 'data/torchthief/loot_tables/'],
-      install: ['Install Fabric Loader 1.21', 'Drop the jar into .minecraft/mods', 'Works on your own server too'],
     },
   },
   skyrim: {
-    project: 'Dragon Loot',
-    testIn: 'Test in Skyrim',
-    ask: {
-      body: 'Describe a quest, perk or loot change. GAIMER asks first, then writes Papyrus scripts and the plugin records to go with them.',
-      earlier: 'Make dragons drop legendary loot.',
-      earlierResult: 'Every dragon now carries a legendary item from a new loot list, scaled to your level.',
-      request: 'Make the loot rarer on lower difficulties.',
-      question: 'How should difficulty change it?',
-      hint: 'I can scale the drop chance by your difficulty setting.',
-      options: ['Novice 10%', 'Legendary 50%', 'Scale evenly'],
-    },
-    test: {
-      title: 'Checked against your load order, then tested',
-      body: 'GAIMER compiles the scripts, checks the new records against every plugin you run, then loads a test save with SKSE.',
-      badge: 'Tested in Skyrim SE',
-      phases: [
-        ['Compiling Papyrus', '0:09'],
-        ['Checking 214 plugins', '0:06'],
-        ['Loading a test save', '0:44'],
+    intro: 'Quests, perks, loot and survival systems that fit Skyrim’s records and your load order.',
+    ideas: [
+      { tag: 'Loot', prompt: 'Make dragons drop legendary loot.', result: 'Every dragon carries a legendary item from a new leveled list, rarer on lower difficulties.', image: '/games/heroes/skyrim.jpg' },
+      { tag: 'Survival', prompt: 'Add a hunger and fatigue system.', result: 'Eat and sleep or lose stamina regen, with effects shown in the active effects menu.', image: '/games/mods/skyrim-2.jpg' },
+      { tag: 'Perks', prompt: 'Rebalance the archery perk tree.', result: 'Steadier zoom, faster draw at higher ranks and a new perk for headshot damage.', image: '/games/mods/skyrim-3.jpg' },
+      { tag: 'Quest', prompt: 'Add a bounty hunter quest line in Riften.', result: 'A new giver at the Bee and Barb, five bounties and a unique bow as the reward.', image: '/games/mods/skyrim-4.jpg' },
+      { tag: 'Followers', prompt: 'Let followers carry more and level with me.', result: 'Followers scale to your level and carry an extra 150 weight.', image: '/games/mods/skyrim-5.jpg' },
+      { tag: 'World', prompt: 'Make wolves hunt in packs at night.', result: 'Wolves spawn in packs of three to five after dark and flank instead of charging.', image: '/games/mods/skyrim-6.jpg' },
+    ],
+    toolchain: {
+      body: 'GAIMER writes Papyrus scripts and plugin records, checks them against your load order and tests them in a save with SKSE.',
+      rows: [
+        ['Writes', 'Papyrus, plus ESP records'],
+        ['Framework', 'SKSE'],
+        ['Tested in', 'Skyrim SE with a backed-up test save'],
+        ['You get', 'An .esp with compiled scripts'],
+        ['Install', 'Mod Organizer 2 or Vortex'],
       ],
-      log: [
-        ['[Compiler]', 'DragonLoot.psc → DragonLoot.pex'],
-        ['[LoadOrder]', '0 conflicts · DragonLoot.esp slot FE 001'],
-        ['[SKSE]', 'Skyrim 1.6.1170 · SKSE 2.2.6'],
-        ['[Papyrus]', 'OnDeath · dragon at Whiterun'],
-        ['[Papyrus]', 'Dropped Dragonbone Greatsword (roll 0.31)'],
-      ],
-      passed: ['Scripts compile', 'No conflicts', 'Loot list', 'Save safe'],
-    },
-    code: {
-      title: 'Papyrus and records, written for you',
-      body: 'GAIMER writes the Papyrus, adds the leveled lists and quest records to an ESP, and explains every change it made.',
-      lang: 'papyrus',
       files: ['DragonLoot.esp', 'DragonLoot.psc', 'DragonLootQuest.psc', 'LItemDragonLegendary'],
-      active: 1,
-      snippet: `Scriptname DragonLoot extends ReferenceAlias
-
-LeveledItem Property LegendaryLoot Auto
-GlobalVariable Property GameDifficulty Auto
-
-Event OnDeath(Actor akKiller)
-  ; Higher difficulty, better odds
-  Float chance = 0.1 + GameDifficulty.GetValue() * 0.08
-  If Utility.RandomFloat() < chance
-    GetReference().AddItem(LegendaryLoot)
-  EndIf
-EndEvent`,
-    },
-    ship: {
-      title: 'Packaged for your mod manager',
-      body: 'Every change is a saved version, and your saves are backed up before each test. Export a ready-to-install archive.',
-      output: 'DragonLoot.7z',
-      contents: ['DragonLoot.esp', 'Scripts/DragonLoot.pex', 'Scripts/Source/DragonLoot.psc', 'README.txt'],
-      install: ['Install with Mod Organizer 2 or Vortex', 'Enable DragonLoot.esp', 'Needs SKSE'],
     },
   },
   'cyberpunk-2077': {
-    project: 'Netrunner Perks',
-    testIn: 'Test in Cyberpunk',
-    ask: {
-      body: 'Describe a perk, quickhack or cyberware. GAIMER asks first, then writes redscript and TweakXL records for Night City.',
-      earlier: 'Add a cyberware that slows time when you dodge.',
-      earlierResult: 'Reflex Weave slows time to 30% for two seconds after a perfect dodge, with a 20 second cooldown.',
-      request: 'Add a netrunner perk that refunds RAM on kills.',
-      question: 'How much RAM should it refund?',
-      hint: 'I can refund a flat amount or a share of the quickhack’s cost.',
-      options: ['2 RAM', '25% of cost', 'Full cost'],
-    },
-    test: {
-      title: 'Compiled and hot-reloaded into your game',
-      body: 'GAIMER compiles the redscript, validates the tweaks, then hot-reloads them into your running game so you can try them straight away.',
-      badge: 'Tested on 2.2',
-      phases: [
-        ['Writing redscript and tweaks', '0:24'],
-        ['Compiling scripts', '0:05'],
-        ['Hot-reloading into the game', '0:08'],
+    intro: 'Quickhacks, cyberware, perks and street life for Night City, hot-reloaded into your running game.',
+    ideas: [
+      { tag: 'Perk', prompt: 'Add a netrunner perk that refunds RAM on kills.', result: 'A new Intelligence perk that refunds a quarter of a quickhack’s RAM when it kills.', image: '/games/mods/cyberpunk-2077-1.jpg' },
+      { tag: 'Cyberware', prompt: 'Add cyberware that slows time when I dodge.', result: 'Reflex Weave slows time to 30% for two seconds after a perfect dodge.', image: '/games/mods/cyberpunk-2077-2.jpg' },
+      { tag: 'World', prompt: 'Make traffic react to gunfire.', result: 'Drivers swerve, abandon cars or floor it when shots ring out nearby.', image: '/games/mods/cyberpunk-2077-3.jpg' },
+      { tag: 'Quickhack', prompt: 'Add a quickhack that turns turrets on their owners.', result: 'Override Turret, with a RAM cost and cooldown that scale with turret level.', image: '/games/mods/cyberpunk-2077-4.jpg' },
+      { tag: 'Vehicles', prompt: 'Let me call any car I’ve driven to my location.', result: 'Every car you drive is saved to a garage list in your phone’s vehicle menu.', image: '/games/mods/cyberpunk-2077-5.jpg' },
+      { tag: 'Economy', prompt: 'Make fixers pay more for stealthy gigs.', result: 'Gigs finished undetected pay 40% more, shown in the gig summary.', image: '/games/mods/cyberpunk-2077-6.jpg' },
+    ],
+    toolchain: {
+      body: 'GAIMER writes redscript for game logic and TweakXL records for stats, then hot-reloads them into your game.',
+      rows: [
+        ['Writes', 'redscript, plus TweakXL YAML'],
+        ['Framework', 'REDmod, redscript, TweakXL'],
+        ['Tested in', 'Your running game, hot-reloaded'],
+        ['You get', 'A zip in the game’s folder layout'],
+        ['Install', 'Extract into the game folder or use Vortex'],
       ],
-      log: [
-        ['[redscript]', 'compiled 3 files · 0 errors'],
-        ['[TweakXL]', 'loaded NetrunnerPerks.yaml'],
-        ['[RHT]', 'hot reload complete'],
-        ['[GAIMER]', 'kill with Short Circuit · RAM +3'],
-        ['[GAIMER]', 'perk shown in Intelligence tree'],
-      ],
-      passed: ['Compiles', 'Tweaks valid', 'Hot reload', 'Perk works'],
-    },
-    code: {
-      title: 'redscript and tweaks you can read',
-      body: 'Game logic goes in redscript, stats and perk records in TweakXL YAML. GAIMER keeps them matched to your game version.',
-      lang: 'redscript',
       files: ['NetrunnerPerks.reds', 'RamRefund.reds', 'NetrunnerPerks.yaml', 'en-us.json'],
-      active: 1,
-      snippet: `@wrapMethod(PlayerPuppet)
-protected cb func OnTargetKilled(evt: ref<TargetKilledEvent>) -> Bool {
-  // Refund a quarter of the quickhack's RAM cost
-  if HasPerk(this, n"RamRefund") && evt.byQuickhack {
-    RestoreMemory(this, evt.hackCost * 0.25);
-  }
-  return wrappedMethod(evt);
-}`,
-    },
-    ship: {
-      title: 'Archived in the folders the game expects',
-      body: 'Every change is a saved version you can undo. Export an archive laid out exactly how Cyberpunk mods install.',
-      output: 'NetrunnerPerks.zip',
-      contents: ['r6/scripts/NetrunnerPerks/*.reds', 'r6/tweaks/NetrunnerPerks.yaml', 'archive/pc/mod/', 'README.txt'],
-      install: ['Extract into the game folder', 'Needs redscript and TweakXL', 'Or install with Vortex'],
     },
   },
-  'elden-ring': {
-    project: 'Co-op Rebalance',
-    testIn: 'Test in Elden Ring',
-    ask: {
-      body: 'Describe a rebalance or a new rule. GAIMER asks first, then edits the game’s params and events to match.',
-      earlier: 'Scale enemies to the size of my co-op party.',
-      earlierResult: 'Enemy health now scales by 1.4× per extra player, and damage by 1.15×.',
-      request: 'Make every boss drop a unique talisman.',
-      question: 'Which talismans should drop?',
-      hint: 'I can add new talismans or reuse ones from the base game.',
-      options: ['New ones', 'Base game', 'Mix of both'],
-    },
-    test: {
-      title: 'Tested offline, so your save stays safe',
-      body: 'GAIMER checks every param it changed, backs up your save, then launches the game offline through ModEngine 2 to try it.',
-      badge: 'Tested offline',
-      phases: [
-        ['Editing params', '0:14'],
-        ['Backing up your save', '0:02'],
-        ['Launching with ModEngine 2', '0:36'],
+  'fallout-4': {
+    intro: 'Settlements, companions, power armor and survival systems for the Commonwealth, built to fit your load order.',
+    ideas: [
+      { tag: 'Settlements', prompt: 'Let settlers run shops that earn caps while I’m away.', result: 'Assign a settler to any shop stall and it earns caps each day, collected from a new terminal.', image: '/games/mods/fallout-4-1.jpg' },
+      { tag: 'Companions', prompt: 'Make Dogmeat find loot and bring it back.', result: 'Send Dogmeat to scavenge and he returns with ammo, junk or the odd rare item.', image: '/games/mods/fallout-4-2.jpg' },
+      { tag: 'Power armor', prompt: 'Add a jetpack upgrade that lasts longer.', result: 'A new Hover Pack mod for power armor with twice the burn time and a slower fall.', image: '/games/mods/fallout-4-3.jpg' },
+      { tag: 'Survival', prompt: 'Add radiation storms that roll in every few days.', result: 'Storms build over an hour, push radiation up outdoors and send creatures into hiding.', image: '/games/mods/fallout-4-4.jpg' },
+      { tag: 'Weapons', prompt: 'Add a laser rifle mod that chains to nearby enemies.', result: 'An Arc Capacitor mod that jumps each shot to two more targets for half damage.', image: '/games/mods/fallout-4-5.jpg' },
+      { tag: 'Robots', prompt: 'Let me build a Mister Handy to guard my settlement.', result: 'A buildable robot at the workbench that patrols, repairs defences and calls out raids.', image: '/games/mods/fallout-4-6.jpg' },
+    ],
+    toolchain: {
+      body: 'GAIMER writes Papyrus scripts and plugin records, checks them against your load order and tests them in a save with F4SE.',
+      rows: [
+        ['Writes', 'Papyrus, plus ESP records'],
+        ['Framework', 'F4SE'],
+        ['Tested in', 'Fallout 4 with a backed-up test save'],
+        ['You get', 'An .esp with compiled scripts'],
+        ['Install', 'Mod Organizer 2 or Vortex'],
       ],
-      log: [
-        ['[Params]', 'ItemLotParam_enemy · 24 rows changed'],
-        ['[Params]', 'EquipParamAccessory · 24 rows added'],
-        ['[Save]', 'ER0000.sl2 backed up'],
-        ['[ME2]', 'regulation.bin loaded · online off'],
-        ['[GAIMER]', 'Margit defeated · dropped Talisman of the Omen'],
-      ],
-      passed: ['Params valid', 'Save backed up', 'Boss drops', 'Offline only'],
-    },
-    code: {
-      title: 'Param changes, side by side',
-      body: 'Elden Ring mods are mostly param edits. GAIMER shows every row it changed, old value next to new, so nothing is a mystery.',
-      lang: 'csv',
-      files: ['regulation.bin', 'ItemLotParam_enemy', 'EquipParamAccessory', 'config_eldenring.toml'],
-      active: 1,
-      snippet: `; ItemLotParam_enemy · boss drops
-ID,       Name,                  lotItemId01, lotItemBasePoint01
-10000000, Margit the Fell Omen,  1500,        1000
-10010000, Godrick the Grafted,   1510,        1000
-10020000, Rennala,               1520,        1000
-; 1500+ are new talismans in EquipParamAccessory`,
-    },
-    ship: {
-      title: 'A mod folder for ModEngine 2',
-      body: 'Every change is a saved version you can undo. Export a folder that ModEngine 2 loads, with online play kept off.',
-      output: 'coop-rebalance.zip',
-      contents: ['mod/regulation.bin', 'mod/msg/engus/item.msgbnd.dcx', 'config_eldenring.toml', 'README.txt'],
-      install: ['Extract next to ModEngine 2', 'Launch with launchmod_eldenring.bat', 'Offline only, never online'],
+      files: ['SettlerShops.esp', 'SettlerShops.psc', 'ShopTerminal.psc', 'CapsLedger.psc'],
     },
   },
-  // RDR2 uses RedM, Cfx.re's sister project to FiveM: the same Lua resources, fxmanifest and server workflow as GTA V.
   'red-dead-redemption-2': {
-    project: 'Bounty Boards',
-    testIn: 'Test in RDR2',
-    ask: {
-      body: 'Describe how the frontier should play. GAIMER asks first, then writes a native RedM resource in Lua, the same way it builds GTA V mods.',
-      earlier: 'Rebalance horse stamina and bonding.',
-      earlierResult: 'Horses now lose stamina 30% slower, and bonding levels up twice as fast.',
-      request: 'Add a bounty board in every town.',
-      question: 'What should bounties pay?',
-      hint: 'I can scale rewards by distance or by how dangerous the target is.',
-      options: ['By distance', 'By danger', 'Both'],
-    },
-    test: {
-      title: 'Tested on a real RedM server first',
-      body: 'Every change runs on a RedM test server before you see it. If something breaks, GAIMER fixes it and tests again.',
-      badge: 'Tested on RedM',
-      phases: [
-        ['Writing the Lua resource', '0:21'],
-        ['Starting a RedM test server', '0:13'],
-        ['Taking a test bounty', '0:39'],
+    intro: 'Jobs, bounties, camps and frontier systems, built as RedM resources the same way GAIMER builds GTA V mods.',
+    ideas: [
+      { tag: 'Bounties', prompt: 'Add a bounty board in every town.', result: 'Boards in nine towns, with rewards scaled by distance and how dangerous the target is.', image: '/games/mods/red-dead-redemption-2-1.jpg' },
+      { tag: 'Horses', prompt: 'Rebalance horse stamina and bonding.', result: 'Stamina drains 30% slower and bonding levels up twice as fast.', image: '/games/mods/red-dead-redemption-2-2.jpg' },
+      { tag: 'Job', prompt: 'Add a stagecoach delivery job.', result: 'Pick up parcels in Valentine, deliver across the map and get paid on time bonuses.', image: '/games/mods/red-dead-redemption-2-3.jpg' },
+      { tag: 'Camp', prompt: 'Let players build and upgrade a camp.', result: 'Place a tent, fire and storage, then upgrade them with pelts and cash.', image: '/games/mods/red-dead-redemption-2-4.jpg' },
+      { tag: 'Hunting', prompt: 'Make legendary animals roam instead of spawning.', result: 'Legendaries move between regions over in-game days, tracked by rumours in saloons.', image: '/games/mods/red-dead-redemption-2-5.jpg' },
+      { tag: 'Law', prompt: 'Add a sheriff job that hunts wanted players.', result: 'Sheriffs get a badge, a wanted list and a reward for every outlaw brought in.', image: '/games/heroes/red-dead-redemption-2.jpg', focus: '75% 30%' },
+    ],
+    toolchain: {
+      body: 'GAIMER builds RDR2 mods as native RedM resources, Cfx.re’s sister project to FiveM, and tests them on a real RedM server.',
+      rows: [
+        ['Writes', 'Lua'],
+        ['Framework', 'RedM'],
+        ['Tested on', 'A RedM test server'],
+        ['You get', 'A resource folder (.zip)'],
+        ['Install', 'Copy to resources/, add ensure to server.cfg'],
       ],
-      log: [
-        ['[HARNESS]', 'bounty_boards started'],
-        ['[GAIMER]', 'boards placed · 9 towns'],
-        ['[GAIMER]', 'bounty taken · Valentine'],
-        ['[GAIMER]', 'target delivered · paid $85'],
-        ['[GAIMER]', 'no script errors'],
-      ],
-      passed: ['Resource loads', 'Boards placed', 'Rewards', 'No script errors'],
-    },
-    code: {
-      title: 'Edit the world or the Lua',
-      body: 'Place boards and markers in the world, or read the Lua GAIMER wrote against RDR2’s natives. Both stay in sync.',
-      lang: 'lua',
       files: ['fxmanifest.lua', 'client.lua', 'server.lua', 'config.lua'],
-      active: 2,
-      snippet: `-- Pay more for dangerous targets far from town
-local function rewardFor(bounty)
-  local miles = #(bounty.town - bounty.target) / 1609.0
-  local base = 25 + math.floor(miles * 12)
-  return bounty.dangerous and base * 2 or base
-end`,
-    },
-    ship: {
-      title: 'Export a resource for any RedM server',
-      body: 'Every change is a saved version you can undo. Export the exact resource that passed and drop it into your server.',
-      output: 'bounty_boards.zip',
-      contents: ['fxmanifest.lua', 'client.lua', 'server.lua', 'config.lua'],
-      install: ['Copy bounty_boards into resources/', 'Add ensure bounty_boards to server.cfg', 'Restart the server'],
     },
   },
 }

@@ -26,7 +26,7 @@ function ScrollToTop() {
 // so it needs the direction after the page's last section.
 function footerGradient(pathname: string) {
   if (!isDarkRoute(pathname)) return ''
-  return pathname.startsWith('/games/') ? 'theme-dark grad-up' : 'theme-dark grad-down'
+  return 'theme-dark grad-down'
 }
 
 // Site palette for the shader: black, the gradient purple, the button violet and a deep purple.

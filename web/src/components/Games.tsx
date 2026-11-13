@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import { games } from '../data/games'
 
 // Supported-game logos, boxed like the feature boxes above and sitting on the same dark gradient. The logos are
-// shown on a #1A1A1A panel; the all-black logos (Skyrim, Elden Ring, Cyberpunk) are rendered white so they read on it.
+// shown on a #1A1A1A panel; the all-black logos (Skyrim, Cyberpunk) are rendered white so they read on it.
 // Logos drawn in black; on the dark panel they're shown in white.
 
 export function Games() {

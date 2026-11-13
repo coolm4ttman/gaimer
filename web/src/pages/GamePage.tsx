@@ -1,7 +1,7 @@
 import { useParams } from 'react-router'
 import { Faq } from '../components/Faq'
 import { GameHero } from '../components/GameHero'
-import { GameShowcase } from '../components/GameShowcase'
+import { GameIdeas, GameToolchain } from '../components/GameShowcase'
 import { gameShowcase } from '../data/gameShowcase'
 import { gameFaqs } from '../data/gameFaqs'
 import { games } from '../data/games'
@@ -19,9 +19,12 @@ export function GamePage() {
         <GameHero game={game} />
       </div>
       <div className="grad-up">
-        <GameShowcase slug={game.slug} name={game.short} content={gameShowcase[game.slug]} />
+        <GameIdeas name={game.short} content={gameShowcase[game.slug]} />
       </div>
       <div className="grad-down">
+        <GameToolchain name={game.short} hero={game.hero} content={gameShowcase[game.slug]} />
+      </div>
+      <div className="grad-up">
         <Faq items={gameFaqs[game.slug]} />
       </div>
     </div>

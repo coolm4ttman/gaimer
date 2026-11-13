@@ -22,7 +22,7 @@ const photos: [string, string, number, number, number, number, number][] = [
   ['/games/cards/gta-v-2.jpg', 'A police chase in GTA V', -15, 16, 357, 280, -3],
   ['/games/heroes/minecraft.jpg', 'Friends exploring a Minecraft world', 410, 0, 344, 429, -6],
   ['/games/cards/skyrim-2.jpg', 'Exploring Whiterun in Skyrim', 807, 37, 253, 318, 4],
-  ['/games/cards/elden-ring-2.jpg', 'A dragon fight in Elden Ring', 109, 339, 353, 274, 2],
+  ['/games/mods/fallout-4-1.jpg', 'A settlement market in Fallout 4', 109, 339, 353, 274, 2],
   ['/games/cards/red-dead-redemption-2-2.jpg', 'Riders at sunset in Red Dead Redemption 2', 668, 353, 361, 285, -4],
 ]
 
@@ -53,7 +53,7 @@ const events: { month: string; title: string; date: string; place: string; type:
   { month: 'October 2026', title: 'London Mod Night', date: 'October 16, 2026', place: 'London, United Kingdom', type: 'Meetup', img: '/games/cards/cyberpunk-2077-3.jpg' },
   { month: 'October 2026', title: 'Minecraft Mod Workshop', date: 'October 22, 2026', place: 'Berlin, Germany', type: 'Workshop', img: '/games/heroes/minecraft.jpg' },
   { month: 'November 2026', title: 'GTA V Story Mod Jam', date: 'November 6 – November 8, 2026', place: 'Los Angeles, United States', type: 'Modding jam', img: '/games/cards/gta-v-1.jpg' },
-  { month: 'November 2026', title: 'Elden Ring Boss Rework Weekend', date: 'November 14 – November 15, 2026', place: 'Online', type: 'Online', img: '/games/cards/elden-ring-1.jpg' },
+  { month: 'November 2026', title: 'Fallout 4 Settlement Build Weekend', date: 'November 14 – November 15, 2026', place: 'Online', type: 'Online', img: '/games/mods/fallout-4-6.jpg' },
   { month: 'November 2026', title: 'Red Dead Frontier Jam', date: 'November 21, 2026', place: 'Austin, United States', type: 'Modding jam', img: '/games/cards/red-dead-redemption-2-1.jpg' },
 ]
 const eventTypes: ('All' | EventType)[] = ['All', 'Modding jam', 'Workshop', 'Meetup', 'Online']

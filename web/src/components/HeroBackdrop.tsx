@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 // High-resolution game key art behind the hero app window (Steam 2x library art, 2560px), crossfading every few
 // seconds. `focus` keeps each image's subject in frame when the wide art is cropped to the panel.
 const ART: { src: string; focus: string }[] = [
-  { src: '/games/backdrops/elden-ring.jpg', focus: '50% 50%' },
+  { src: '/games/backdrops/fallout-4.jpg', focus: '50% 50%' },
   { src: '/games/backdrops/gta-v.jpg', focus: '62% 30%' },
   { src: '/games/backdrops/red-dead-redemption-2.jpg', focus: '68% 40%' },
   { src: '/games/backdrops/cyberpunk-2077.jpg', focus: '62% 40%' },

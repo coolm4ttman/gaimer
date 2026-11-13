@@ -62,15 +62,15 @@ export const games: Game[] = [
     ideas: ['Add a new netrunner perk tree', 'Make traffic react to gunfire', 'Create a cyberware that slows time on dodge'],
   },
   {
-    slug: 'elden-ring',
-    hero: '/games/heroes/elden-ring.jpg',
-    name: 'Elden Ring',
-    short: 'Elden Ring',
-    logo: '/games/eldenring.svg',
-    logoClass: 'h-6',
-    loaders: ['ModEngine 2', 'Param editing'],
-    blurb: 'Rebalance weapons, enemies and co-op with param and script changes that GAIMER checks before they touch your save.',
-    ideas: ['Add a co-op revive mechanic', 'Make every boss drop a unique talisman', 'Scale enemies to party size'],
+    slug: 'fallout-4',
+    hero: '/games/heroes/fallout-4.jpg',
+    name: 'Fallout 4',
+    short: 'Fallout 4',
+    logo: '/games/fallout4.png',
+    logoClass: 'h-12',
+    loaders: ['F4SE', 'Papyrus', 'Creation Kit records'],
+    blurb: 'Build settlements, companions and survival systems for the Commonwealth that fit your load order and your saves.',
+    ideas: ['Let settlers run shops that earn caps', 'Make Dogmeat fetch loot', 'Add radiation storms every few days'],
   },
   {
     slug: 'red-dead-redemption-2',
@@ -86,4 +86,4 @@ export const games: Game[] = [
 ]
 
 // Logos drawn in black; invert them on dark backgrounds.
-export const DARK_LOGOS = new Set(['skyrim', 'elden-ring', 'cyberpunk-2077'])
+export const DARK_LOGOS = new Set(['skyrim', 'cyberpunk-2077'])
