@@ -11,6 +11,9 @@ function detectOs(): Os {
   return mac ? 'mac' : 'windows'
 }
 
+// Detected once per page load and shared, so every download button (nav, hero, CTA, pricing) always agrees.
+const OS: Os = detectOs()
+
 function WindowsLogo({ className = '' }: { className?: string }) {
   return (
     <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" className={className}>
@@ -30,7 +33,7 @@ function AppleLogo({ className = '' }: { className?: string }) {
 
 // lg: hero/CTA button ("Download for Windows"); sm: nav-sized. `full` adds the platform name at the small size.
 export function DownloadButton({ size = 'lg', full = false, className = '' }: { size?: 'sm' | 'lg'; full?: boolean; className?: string }) {
-  const os = detectOs()
+  const os = OS
   const label = size === 'lg' || full ? `Download for ${os === 'mac' ? 'macOS' : 'Windows'}` : 'Download'
   const Logo = os === 'mac' ? AppleLogo : WindowsLogo
   return (
