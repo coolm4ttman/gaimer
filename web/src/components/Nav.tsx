@@ -79,7 +79,7 @@ function GamesMenu({ tone }: { tone: string }) {
       {open && (
         // pt-2 bridges the gap so the menu stays open while the pointer moves onto it.
         <div className="absolute top-full left-0 pt-2">
-          <div className="w-[300px] rounded-xl bg-[#0f0f13]/95 p-2 shadow-[inset_0_0_0_1px_rgb(255_255_255/0.08),0_16px_40px_-8px_rgb(0_0_0/0.6)] backdrop-blur-md">
+          <div className="w-max min-w-[300px] rounded-xl bg-[#0f0f13]/95 p-2 shadow-[inset_0_0_0_1px_rgb(255_255_255/0.08),0_16px_40px_-8px_rgb(0_0_0/0.6)] backdrop-blur-md">
             <ul>
               {games.map((g) => (
                 <li key={g.slug}>
@@ -87,7 +87,7 @@ function GamesMenu({ tone }: { tone: string }) {
                     <span className="flex h-8 w-14 shrink-0 items-center justify-center rounded-md bg-[#1a1a1a]">
                       <img src={g.logo} alt="" className={`max-h-5 w-auto max-w-[44px] object-contain ${DARK_LOGOS.has(g.slug) ? 'brightness-0 invert' : ''}`} />
                     </span>
-                    <span className="text-sm text-white/85">{g.name}</span>
+                    <span className="text-sm whitespace-nowrap text-white/85">{g.name}</span>
                     {g.comingSoon && <ComingSoonBadge className="ml-auto" />}
                   </Link>
                 </li>
