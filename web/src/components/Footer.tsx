@@ -16,11 +16,17 @@ const links: [string, string][] = [
 
 const YEAR = new Date().getFullYear()
 
+// Pages that are themselves the call to action (the beta sign-up) show the footer bar on its own.
+const NO_CTA = new Set(['/beta'])
+
 export function Footer() {
-  const dark = isDarkRoute(useLocation().pathname)
+  const { pathname } = useLocation()
+  const dark = isDarkRoute(pathname)
+  const bare = NO_CTA.has(pathname)
   return (
-    <div id="cta" className="relative scroll-mt-16 overflow-hidden pt-[92px] pb-[30px]">
+    <div id="cta" className={`relative scroll-mt-16 overflow-hidden ${bare ? 'pt-0' : 'pt-[92px]'} pb-[30px]`}>
       {/* Closing call to action: a boxed panel over the rotating game art, matching the hero. */}
+      {!bare && (
       <div className="relative z-10 px-2 md:px-20">
         <div className="relative mx-auto max-w-[1280px] overflow-hidden rounded-t-3xl">
           <HeroBackdrop />
@@ -47,9 +53,10 @@ export function Footer() {
           </div>
         </div>
       </div>
+      )}
 
       <div className="relative z-10 px-2 md:px-20">
-        <footer className="mx-auto flex max-w-[1280px] flex-col items-center justify-between gap-6 rounded-b-3xl border border-t-0 border-footer-border bg-footer px-6 py-6 md:flex-row md:px-10">
+        <footer className={`mx-auto flex max-w-[1280px] flex-col items-center justify-between gap-6 ${bare ? 'rounded-3xl border' : 'rounded-b-3xl border border-t-0'} border-footer-border bg-footer px-6 py-6 md:flex-row md:px-10`}>
           <Logo onDark={dark} white={dark} />
           <nav>
             <ul className="flex flex-wrap items-center justify-center gap-x-7 gap-y-2">

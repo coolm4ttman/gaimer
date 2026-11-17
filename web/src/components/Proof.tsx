@@ -2,43 +2,44 @@ import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { DARK_LOGOS, games } from '../data/games'
 
-// CONCEPT stories: fictional creators, quotes and numbers for this concept site.
+// PLACEHOLDER stories: fictional creators, quotes and numbers, until real beta testers' stories replace them.
+// GTA V and FiveM only: that's what GAIMER builds today.
 const stories = [
   {
-    game: 'skyrim',
-    intro: 'A solo modder rebuilt Skyrim as a survival horror game over one weekend, with dragons that hunt by sound.',
-    quote: '“I described the mechanic and had it running in-game before lunch. That never happens.”',
+    game: 'gta-v',
+    intro: 'A FiveM roleplay server owner added taxi, tow-truck and paramedic jobs to their server in an afternoon, all sharing one wallet.',
+    quote: '“I explained what I wanted like I’d explain it to a mate. Twenty minutes later I was driving the taxi in GTA.”',
     stats: [
-      ['48h', 'from idea to release'],
-      ['14', 'mechanics added'],
-      ['220k', 'downloads'],
+      ['1 afternoon', 'from idea to live server'],
+      ['4', 'jobs added'],
+      ['120', 'players on launch night'],
     ],
-    person: 'Maya Okafor',
-    role: 'Solo modder, Skyrim',
+    person: 'Jordan Reyes',
+    role: 'Server owner, FiveM roleplay',
   },
   {
-    game: 'minecraft',
-    intro: 'A first-time modder shipped a full co-op base-building mode for Minecraft in three days.',
-    quote: '“I’d never written a line of Java. GAIMER read the game, explained it, and built it with me.”',
+    game: 'gta-v',
+    intro: 'A GTA player who had never modded built a zombie survival mode at a farm, with waves that get harder every night.',
+    quote: '“I’ve never written any code. I asked for zombies, then for harder waves, and GAIMER just did it.”',
     stats: [
-      ['3 days', 'from idea to release'],
-      ['12', 'mechanics added'],
-      ['85k', 'downloads'],
+      ['2 hours', 'from idea to playing'],
+      ['9', 'changes asked for'],
+      ['0', 'lines of code written'],
     ],
-    person: 'Leo Brandt',
-    role: 'Solo modder, Minecraft',
+    person: 'Priya Shah',
+    role: 'First-time modder, GTA V',
   },
   {
-    game: 'cyberpunk-2077',
-    intro: 'A long-time Cyberpunk 2077 modder moved their whole workflow to GAIMER and now ships twice as often.',
-    quote: '“Hot reload alone changed how I work. I iterate inside the game now, not around it.”',
+    game: 'gta-v',
+    intro: 'A crew built a street-racing night for their friends: checkpoints across the city, a race timer and cash for the winner.',
+    quote: '“We tested it inside GAIMER every few minutes. When something felt off, we just said so and it changed.”',
     stats: [
-      ['5 days', 'from idea to release'],
-      ['21', 'mechanics added'],
-      ['310k', 'downloads'],
+      ['1 evening', 'from idea to race night'],
+      ['12', 'checkpoints'],
+      ['16', 'friends racing'],
     ],
-    person: 'Sam Whitlock',
-    role: 'Solo modder, Cyberpunk 2077',
+    person: 'Marcus Doyle',
+    role: 'Crew leader, FiveM',
   },
 ]
 

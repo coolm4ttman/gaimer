@@ -4,6 +4,7 @@ import { Footer } from './components/Footer'
 import { Nav } from './components/Nav'
 import { ShaderBackground } from './components/ui/mesh-drift-shader'
 import { isDarkRoute } from './lib/darkRoutes'
+import { BetaPage } from './pages/BetaPage'
 import { CommunityPage } from './pages/CommunityPage'
 import { CreatorsPage } from './pages/CreatorsPage'
 import { GamePage } from './pages/GamePage'
@@ -73,6 +74,7 @@ export default function App() {
           <Route path="community" element={<CommunityPage />} />
           <Route path="creators" element={<CreatorsPage />} />
           <Route path="pricing" element={<PricingPage />} />
+          <Route path="beta" element={<BetaPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

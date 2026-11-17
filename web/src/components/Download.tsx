@@ -1,6 +1,6 @@
-// GAIMER is in a private beta: the beta page takes an invite code and an email, then gives the download
-// (GAIMER's relay, relay/src/invite-codes.js in gaimer-platform).
-export const DOWNLOAD_URL = 'https://gaimer-relay.gaimer.workers.dev/beta'
+// GAIMER is in a private beta: the beta page (pages/BetaPage.tsx) takes an invite code and an email, then gives
+// the download.
+export const DOWNLOAD_URL = '/beta'
 
 type Os = 'windows' | 'mac'
 
