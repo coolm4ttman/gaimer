@@ -27,6 +27,8 @@ function ScrollToTop() {
 // so it needs the direction after the page's last section.
 function footerGradient(pathname: string) {
   if (!isDarkRoute(pathname)) return ''
+  // the beta page's footer is the bar on its own, over the page's background (no black band behind it)
+  if (pathname === '/beta') return 'theme-dark'
   return 'theme-dark grad-down'
 }
 
@@ -52,11 +54,14 @@ function Layout() {
         </div>
       )}
       <Nav />
-      <main>
-        <Outlet />
-      </main>
-      <div className={footerGradient(pathname)}>
-        <Footer />
+      {/* The page fills at least the window, so a short page (the beta sign-up) keeps the footer at the bottom. */}
+      <div className="flex min-h-svh flex-col">
+        <main className="flex-1">
+          <Outlet />
+        </main>
+        <div className={footerGradient(pathname)}>
+          <Footer />
+        </div>
       </div>
     </>
   )

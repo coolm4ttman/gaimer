@@ -7,18 +7,18 @@ import { useCallback, useEffect, useRef, type CSSProperties, type PointerEvent a
 interface ModMarker {
   id: string
   location: [number, number]
-  status: 'Building' | 'Shipped'
+  status: 'Building' | 'Shipped' | 'Coming soon'
   game: string
   mod: string
 }
 
 const defaultMarkers: ModMarker[] = [
   { id: 'sf', location: [37.78, -122.44], status: 'Building', game: 'GTA V', mod: 'Grappling hook' },
-  { id: 'london', location: [51.51, -0.13], status: 'Shipped', game: 'Skyrim', mod: 'Dragon loot tables' },
-  { id: 'tokyo', location: [35.68, 139.65], status: 'Building', game: 'Fallout 4', mod: 'Settler shops' },
-  { id: 'paris', location: [48.86, 2.35], status: 'Building', game: 'Cyberpunk 2077', mod: 'Netrunner perks' },
-  { id: 'sydney', location: [-33.87, 151.21], status: 'Shipped', game: 'Minecraft', mod: 'Co-op base building' },
-  { id: 'nyc', location: [40.71, -74.01], status: 'Shipped', game: 'Red Dead 2', mod: 'Stamina rebalance' },
+  { id: 'london', location: [51.51, -0.13], status: 'Coming soon', game: 'Skyrim', mod: 'Dragon loot tables' },
+  { id: 'tokyo', location: [35.68, 139.65], status: 'Coming soon', game: 'Fallout 4', mod: 'Settler shops' },
+  { id: 'paris', location: [48.86, 2.35], status: 'Coming soon', game: 'Cyberpunk 2077', mod: 'Netrunner perks' },
+  { id: 'sydney', location: [-33.87, 151.21], status: 'Coming soon', game: 'Minecraft', mod: 'Co-op base building' },
+  { id: 'nyc', location: [40.71, -74.01], status: 'Coming soon', game: 'Red Dead 2', mod: 'Stamina rebalance' },
 ]
 
 export function Globe({
@@ -158,12 +158,14 @@ export function Globe({
         >
           {m.status === 'Building' ? (
             <span className="size-2 animate-[live-pulse_1.5s_ease-in-out_infinite] rounded-full bg-brand-amber shadow-[0_0_8px_var(--color-brand-amber)]" />
+          ) : m.status === 'Coming soon' ? (
+            <span className="size-2 rounded-full bg-white/40" />
           ) : (
             <span className="size-2 rounded-full bg-emerald-400" />
           )}
           <span
             className={`font-mono text-[0.65rem] font-semibold tracking-[0.1em] uppercase ${
-              m.status === 'Building' ? 'text-brand-amber' : 'text-emerald-400'
+              m.status === 'Building' ? 'text-brand-amber' : m.status === 'Coming soon' ? 'text-white/55' : 'text-emerald-400'
             }`}
           >
             {m.status}

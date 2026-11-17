@@ -32,7 +32,7 @@ const faqs: [string, string][] = [
   ],
   [
     'Which games are supported?',
-    'GTA V, Minecraft, Skyrim, Cyberpunk 2077, Fallout 4 and Red Dead Redemption 2, with more on the way.',
+    'GTA V, including whole FiveM servers. Minecraft, Skyrim, Cyberpunk 2077, Fallout 4 and Red Dead Redemption 2 are coming soon.',
   ],
   [
     'What is a credit?',

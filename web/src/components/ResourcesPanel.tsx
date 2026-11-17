@@ -20,7 +20,7 @@ const resourceLinks: { title: string; line: string; to: string }[] = [
 
 const announcement = {
   image: '/games/mods/fallout-4-4.jpg',
-  title: 'Fallout 4 support: build settlements and survival systems with GAIMER',
+  title: 'Coming soon: Fallout 4 support, for settlements and survival systems',
   to: '/games/fallout-4',
 }
 

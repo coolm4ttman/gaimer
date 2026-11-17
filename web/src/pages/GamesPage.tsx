@@ -2,6 +2,7 @@ import { ArrowRight } from 'lucide-react'
 import { Link } from 'react-router'
 import { PageHeader } from '../components/PageHeader'
 import { DARK_LOGOS, games } from '../data/games'
+import { ComingSoonBadge } from '../components/ComingSoon'
 
 export function GamesPage() {
   return (
@@ -20,7 +21,8 @@ export function GamesPage() {
               to={`/games/${g.slug}`}
               className="group flex flex-col overflow-hidden rounded-2xl bg-white/[0.04] shadow-[inset_0_0_0_1px_rgb(255_255_255/0.08)] p-2 transition-colors hover:bg-white/[0.07]"
             >
-              <div className="flex h-40 items-center justify-center rounded-2xl bg-[#1a1a1a]">
+              <div className="relative flex h-40 items-center justify-center rounded-2xl bg-[#1a1a1a]">
+                {g.comingSoon && <ComingSoonBadge className="absolute top-3 right-3" />}
                 <img
                   src={g.logo}
                   alt=""
@@ -31,7 +33,7 @@ export function GamesPage() {
                 <h2 className="text-base/6 font-semibold text-ink">{g.name}</h2>
                 <p className="mt-2 flex-1 text-sm/6 text-body">{g.blurb}</p>
                 <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-[480] text-ink group-hover:opacity-70">
-                  Mod {g.short} <ArrowRight className="size-3.5" />
+                  {g.comingSoon ? `See what’s coming for ${g.short}` : `Mod ${g.short}`} <ArrowRight className="size-3.5" />
                 </span>
               </div>
             </Link>

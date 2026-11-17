@@ -152,7 +152,7 @@ export function BetaPage() {
             </p>
           </header>
 
-          <div className={`mx-auto mt-12 max-w-[440px] rounded-3xl bg-white/[0.04] p-2 ${raised}`}>
+          <div className={`mx-auto mt-12 max-w-[490px] rounded-3xl bg-white/[0.04] p-2 ${raised}`}>
             <div className={`rounded-2xl bg-white/[0.06] p-5 ${raised}`}>
               <h2 className="text-xl/[25px] font-[450] tracking-[-0.2px] text-ink">{joined ? 'You’re in' : 'Your invite'}</h2>
               <p className="mt-1.5 mb-5 text-sm/[21px] text-body">

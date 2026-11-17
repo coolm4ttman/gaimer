@@ -1,6 +1,7 @@
 import { DARK_LOGOS } from '../data/games'
 import { Link } from 'react-router'
 import { games } from '../data/games'
+import { ComingSoonBadge } from './ComingSoon'
 
 // Supported-game logos, boxed like the feature boxes above and sitting on the same dark gradient. The logos are
 // shown on a #1A1A1A panel; the all-black logos (Skyrim, Cyberpunk) are rendered white so they read on it.
@@ -15,11 +16,12 @@ export function Games() {
             <Link
               key={g.slug}
               to={`/games/${g.slug}`}
-              className={`flex h-[120px] items-center justify-center border-white/[0.07] px-4 transition-colors hover:bg-white/[0.03] lg:h-[180px] ${
+              className={`relative flex h-[120px] items-center justify-center border-white/[0.07] px-4 transition-colors hover:bg-white/[0.03] lg:h-[180px] ${
                 i % 3 !== 2 ? 'sm:border-r' : ''
               } ${i < 3 ? 'sm:border-b' : ''} ${i % 2 === 0 ? 'max-sm:border-r' : ''} ${i < 4 ? 'max-sm:border-b' : ''}`}
             >
-              <img src={g.logo} alt={g.name} loading="lazy" className={`${g.logoClass} w-auto max-w-[70%] object-contain ${DARK_LOGOS.has(g.slug) ? 'brightness-0 invert' : ''}`} />
+              <img src={g.logo} alt={g.name} loading="lazy" className={`${g.logoClass} w-auto max-w-[70%] object-contain ${DARK_LOGOS.has(g.slug) ? 'brightness-0 invert' : ''} ${g.comingSoon ? 'opacity-60' : ''}`} />
+              {g.comingSoon && <ComingSoonBadge className="absolute top-2.5 right-2.5" />}
             </Link>
           ))}
         </div>

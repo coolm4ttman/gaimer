@@ -1,4 +1,7 @@
+import { ArrowRight } from 'lucide-react'
+import { Link } from 'react-router'
 import { DownloadButton } from './Download'
+import { ComingSoonBadge } from './ComingSoon'
 import { DARK_LOGOS, type Game } from '../data/games'
 
 // Replica of lovable.dev/product-managers' hero (measured at 1440px): 690px cream band under the nav,
@@ -14,6 +17,7 @@ export function GameHero({ game }: { game: Game }) {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_50%,rgb(0_0_0/0.55)_0%,rgb(0_0_0/0.3)_55%,transparent_100%)] md:bg-[radial-gradient(ellipse_42%_48%_at_50%_50%,rgb(0_0_0/0.55)_0%,rgb(0_0_0/0.3)_55%,transparent_100%)]" />
       </div>
       <div className="relative z-10 flex flex-col items-center text-center">
+        {game.comingSoon && <ComingSoonBadge className="mb-6 px-3 py-1 text-sm/5" />}
         <h1 className="flex flex-col items-center text-[44px]/[44px] font-bold tracking-[-2px] text-ink md:text-[80px]/[72px] md:tracking-[-4px] [text-shadow:0_2px_24px_rgb(0_0_0/0.6)]">
           Build mods for
           <img
@@ -23,10 +27,20 @@ export function GameHero({ game }: { game: Game }) {
           />
         </h1>
         <p className="mt-6 max-w-[512px] text-xl/[25px] font-[480] tracking-[-0.5px] text-ink [text-shadow:0_1px_12px_rgb(0_0_0/0.8)]">
-          It’s never been easier to build mods for {game.short}. Describe what you want and GAIMER writes it, tests it
-          and hot-reloads it into your game.
+          {game.comingSoon
+            ? `GAIMER builds GTA V mods today. ${game.short} is coming soon: describe what you want and GAIMER will write it, test it and load it into your game.`
+            : `It’s never been easier to build mods for ${game.short}. Describe what you want and GAIMER writes it, tests it and hot-reloads it into your game.`}
         </p>
-        <DownloadButton size="sm" full className="mt-8" />
+        {game.comingSoon ? (
+          <Link
+            to="/games/gta-v"
+            className="mt-8 inline-flex items-center gap-1.5 rounded-lg bg-white/10 px-4 py-2.5 text-[15px] text-white shadow-[inset_0_0_0_1px_rgb(255_255_255/0.2)] backdrop-blur-md transition-colors hover:bg-white/15"
+          >
+            Mod GTA V today <ArrowRight className="size-4" />
+          </Link>
+        ) : (
+          <DownloadButton size="sm" full className="mt-8" />
+        )}
       </div>
     </section>
   )

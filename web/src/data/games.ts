@@ -13,6 +13,8 @@ export interface Game {
   loaders: string[]
   blurb: string
   ideas: string[]
+  // Not supported by GAIMER yet: shown with a "Coming soon" tag everywhere. GTA V (and FiveM) is what GAIMER builds today.
+  comingSoon?: boolean
 }
 
 export const games: Game[] = [
@@ -30,6 +32,7 @@ export const games: Game[] = [
   },
   {
     slug: 'minecraft',
+    comingSoon: true,
     hero: '/games/heroes/minecraft.jpg',
     name: 'Minecraft',
     short: 'Minecraft',
@@ -41,6 +44,7 @@ export const games: Game[] = [
   },
   {
     slug: 'skyrim',
+    comingSoon: true,
     hero: '/games/heroes/skyrim.jpg',
     name: 'The Elder Scrolls V: Skyrim',
     short: 'Skyrim',
@@ -52,6 +56,7 @@ export const games: Game[] = [
   },
   {
     slug: 'cyberpunk-2077',
+    comingSoon: true,
     hero: '/games/heroes/cyberpunk-2077.jpg',
     name: 'Cyberpunk 2077',
     short: 'Cyberpunk 2077',
@@ -63,6 +68,7 @@ export const games: Game[] = [
   },
   {
     slug: 'fallout-4',
+    comingSoon: true,
     hero: '/games/heroes/fallout-4.jpg',
     name: 'Fallout 4',
     short: 'Fallout 4',
@@ -74,6 +80,7 @@ export const games: Game[] = [
   },
   {
     slug: 'red-dead-redemption-2',
+    comingSoon: true,
     hero: '/games/heroes/red-dead-redemption-2.jpg',
     name: 'Red Dead Redemption 2',
     short: 'Red Dead 2',

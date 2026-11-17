@@ -6,6 +6,7 @@ import { isDarkRoute } from '../lib/darkRoutes'
 import { DownloadButton } from './Download'
 import { Logo } from './Logo'
 import { ResourcesPanel } from './ResourcesPanel'
+import { ComingSoonBadge } from './ComingSoon'
 
 // Resources menu is switched off until the platform has more to show; flip this to bring it (and its mobile link) back.
 const SHOW_RESOURCES = false
@@ -87,6 +88,7 @@ function GamesMenu({ tone }: { tone: string }) {
                       <img src={g.logo} alt="" className={`max-h-5 w-auto max-w-[44px] object-contain ${DARK_LOGOS.has(g.slug) ? 'brightness-0 invert' : ''}`} />
                     </span>
                     <span className="text-sm text-white/85">{g.name}</span>
+                    {g.comingSoon && <ComingSoonBadge className="ml-auto" />}
                   </Link>
                 </li>
               ))}
@@ -177,8 +179,9 @@ export function Nav() {
               <ul className="mt-2 space-y-1 pl-3">
                 {games.map((g) => (
                   <li key={g.slug}>
-                    <Link to={`/games/${g.slug}`} onClick={() => setOpen(false)} className="block py-1.5 text-base text-white/65">
+                    <Link to={`/games/${g.slug}`} onClick={() => setOpen(false)} className="flex items-center gap-2 py-1.5 text-base text-white/65">
                       {g.name}
+                      {g.comingSoon && <ComingSoonBadge />}
                     </Link>
                   </li>
                 ))}
