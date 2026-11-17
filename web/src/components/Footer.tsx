@@ -6,12 +6,12 @@ import { HeroBackdrop } from './HeroBackdrop'
 import { Logo } from './Logo'
 
 // One-line footer: full logo and a handful of links.
-// PLACEHOLDER: Privacy points home until a privacy page exists.
 const links: [string, string][] = [
   ['How it works', '/#how-it-works'],
   ['Games', '/games'],
   ['Pricing', '/pricing'],
-  ['Privacy', '/'],
+  ['Terms', '/terms'],
+  ['Privacy', '/privacy'],
 ]
 
 const YEAR = new Date().getFullYear()

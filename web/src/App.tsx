@@ -11,6 +11,7 @@ import { GamePage } from './pages/GamePage'
 import { GamesPage } from './pages/GamesPage'
 import { HomePage } from './pages/HomePage'
 import { LoginPage } from './pages/LoginPage'
+import { PrivacyPage, TermsPage } from './pages/LegalPage'
 import { NotFoundPage } from './pages/NotFoundPage'
 import { PricingPage } from './pages/PricingPage'
 import { ResourcesPage } from './pages/ResourcesPage'
@@ -82,6 +83,8 @@ export default function App() {
           <Route path="pricing" element={<PricingPage />} />
           <Route path="beta" element={<BetaPage />} />
           <Route path="login" element={<LoginPage />} />
+          <Route path="terms" element={<TermsPage />} />
+          <Route path="privacy" element={<PrivacyPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

@@ -82,7 +82,11 @@ function JoinForm({ onJoined }: { onJoined: (joined: Joined) => void }) {
         {busy ? 'Checking your code…' : 'Get GAIMER'}
         {!busy && <ArrowRight className="size-4" />}
       </button>
-      <p className="text-xs/5 text-subtle">Your email is how you sign in to GAIMER. We don’t use it for anything else.</p>
+      <p className="text-xs/5 text-subtle">
+        Your email is how you sign in to GAIMER. We don’t use it for anything else. By continuing you agree to the{' '}
+        <Link to="/terms" className="text-body underline decoration-white/30 underline-offset-2 hover:text-ink">Terms</Link> and{' '}
+        <Link to="/privacy" className="text-body underline decoration-white/30 underline-offset-2 hover:text-ink">Privacy policy</Link>.
+      </p>
     </form>
   )
 }

@@ -132,6 +132,10 @@ function SignIn({ device, code, onSignedIn }: { device?: string; code?: string; 
       <p className="mt-4 text-xs/5 text-subtle">
         During the beta, accounts need an invite. New here? <Link to="/beta" className="text-body underline decoration-white/30 underline-offset-2 hover:text-ink">Join the beta</Link>.
       </p>
+      <p className="mt-2 text-xs/5 text-subtle">
+        By continuing you agree to the <Link to="/terms" className="text-body underline decoration-white/30 underline-offset-2 hover:text-ink">Terms</Link> and{' '}
+        <Link to="/privacy" className="text-body underline decoration-white/30 underline-offset-2 hover:text-ink">Privacy policy</Link>.
+      </p>
     </Card>
   )
 }
