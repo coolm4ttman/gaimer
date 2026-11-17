@@ -147,9 +147,9 @@ export function BetaPage() {
             <h1 className="mt-4 flex items-center gap-3 text-3xl/[45px] font-[480] text-ink">
               <LogoIcon className="size-9" /> Join the beta
             </h1>
-            <p className="mt-4 max-w-[520px] text-base/6 text-body">
-              Describe a GTA V mod or a whole FiveM server, and GAIMER builds it, checks it and lets you play it. Enter your invite code to get the
-              download.
+            <p className="mt-4 max-w-[760px] text-base/6 text-body">
+              <span className="block">Describe a GTA V mod or a whole FiveM server, and GAIMER builds it, checks it and lets you play it.</span>
+              <span className="block">Enter your invite code to get the download.</span>
             </p>
           </header>
 
