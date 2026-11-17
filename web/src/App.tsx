@@ -10,6 +10,7 @@ import { CreatorsPage } from './pages/CreatorsPage'
 import { GamePage } from './pages/GamePage'
 import { GamesPage } from './pages/GamesPage'
 import { HomePage } from './pages/HomePage'
+import { LoginPage } from './pages/LoginPage'
 import { NotFoundPage } from './pages/NotFoundPage'
 import { PricingPage } from './pages/PricingPage'
 import { ResourcesPage } from './pages/ResourcesPage'
@@ -27,8 +28,8 @@ function ScrollToTop() {
 // so it needs the direction after the page's last section.
 function footerGradient(pathname: string) {
   if (!isDarkRoute(pathname)) return ''
-  // the beta page's footer is the bar on its own, over the page's background (no black band behind it)
-  if (pathname === '/beta') return 'theme-dark'
+  // the beta and login pages' footer is the bar on its own, over the page's background (no black band behind it)
+  if (pathname === '/beta' || pathname === '/login') return 'theme-dark'
   return 'theme-dark grad-down'
 }
 
@@ -80,6 +81,7 @@ export default function App() {
           <Route path="creators" element={<CreatorsPage />} />
           <Route path="pricing" element={<PricingPage />} />
           <Route path="beta" element={<BetaPage />} />
+          <Route path="login" element={<LoginPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

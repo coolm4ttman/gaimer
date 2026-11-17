@@ -1,6 +1,6 @@
 import { ArrowRight, CircleCheck } from 'lucide-react'
 import { useEffect, useRef, useState, type FormEvent } from 'react'
-import { useSearchParams } from 'react-router'
+import { Link, useSearchParams } from 'react-router'
 import { LogoIcon } from '../components/Logo'
 
 // The private beta: an invite code and an email invite that email (GAIMER's relay, relay/src/invite-codes.js in
@@ -101,7 +101,8 @@ function Joined({ joined }: { joined: Joined }) {
       installer signed.
     </>,
     <>
-      Open GAIMER and sign in with <b className="font-medium text-ink">{joined.email}</b>. We’ll email you a sign-in link.
+      Create your account with <b className="font-medium text-ink">{joined.email}</b> (button below), then open GAIMER and press{' '}
+      <b className="font-medium text-ink">Sign in</b>: your browser connects it.
     </>,
     <>
       Something broken? Use <b className="font-medium text-ink">Report a problem</b> in GAIMER’s account menu. Every report is read.
@@ -123,6 +124,12 @@ function Joined({ joined }: { joined: Joined }) {
         </svg>
         Download GAIMER for Windows
       </a>
+      <Link
+        to="/login"
+        className="mt-2 flex w-full items-center justify-center gap-2 rounded-lg px-3 py-2.5 text-[15px] text-white shadow-[inset_0_0_0_1px_rgb(255_255_255/0.18)] transition-colors hover:bg-white/[0.06]"
+      >
+        Create your account <ArrowRight className="size-4" />
+      </Link>
       <ol className="mt-6 space-y-3">
         {next.map((item, i) => (
           <li key={i} className="flex gap-3 text-sm/[21px] text-body">

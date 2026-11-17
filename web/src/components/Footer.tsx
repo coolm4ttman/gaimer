@@ -17,7 +17,7 @@ const links: [string, string][] = [
 const YEAR = new Date().getFullYear()
 
 // Pages that are themselves the call to action (the beta sign-up) show the footer bar on its own.
-const NO_CTA = new Set(['/beta'])
+const NO_CTA = new Set(['/beta', '/login'])
 
 export function Footer() {
   const { pathname } = useLocation()

@@ -153,8 +153,8 @@ export function Nav() {
           </nav>
         </div>
         <div className="hidden items-center gap-2 lg:flex">
-          <a
-            href="#cta"
+          <Link
+            to="/login"
             className={`rounded-lg px-2.5 py-1.5 text-sm transition-colors ${
               onDark
                 ? 'text-white shadow-[inset_0_0_0_1px_rgb(255_255_255/0.3)] hover:bg-white/10'
@@ -162,7 +162,7 @@ export function Nav() {
             }`}
           >
             Log in
-          </a>
+          </Link>
           <DownloadButton size="sm" />
         </div>
         <button className={`p-2 lg:hidden ${tone}`} onClick={() => setOpen((o) => !o)} aria-label={open ? 'Close menu' : 'Open menu'}>
@@ -196,9 +196,9 @@ export function Nav() {
             ))}
           </ul>
           <div className="mt-6 grid grid-cols-2 gap-2">
-            <a href="#cta" onClick={() => setOpen(false)} className="rounded-lg py-2.5 text-center shadow-[inset_0_0_0_1px_rgb(255_255_255/0.3)]">
+            <Link to="/login" onClick={() => setOpen(false)} className="rounded-lg py-2.5 text-center shadow-[inset_0_0_0_1px_rgb(255_255_255/0.3)]">
               Log in
-            </a>
+            </Link>
             <DownloadButton size="sm" className="justify-center py-2.5" />
           </div>
         </div>
