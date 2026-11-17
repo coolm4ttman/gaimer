@@ -138,8 +138,9 @@ function Joined({ joined }: { joined: Joined }) {
 export function BetaPage() {
   const [joined, setJoined] = useState<Joined | null>(null)
   return (
-    <div className="theme-dark">
-      <div className="grad-down px-4 pt-32 pb-16">
+    // Fills the window above the footer bar (about 110px with its gap) and centres the invite in it, below the nav.
+    <div className="theme-dark flex min-h-[calc(100svh-110px)] flex-col">
+      <div className="grad-down flex flex-1 flex-col justify-center px-4 pt-24 pb-10">
         <div className="mx-auto max-w-[1000px]">
           <header className="flex flex-col items-center text-center">
             <span className="rounded-full bg-white/[0.08] px-2.5 py-0.5 text-xs font-medium text-body">Private beta · by invite</span>
