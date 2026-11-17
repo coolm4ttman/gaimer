@@ -1,5 +1,6 @@
-// TODO: point at the real installers once there are some (one per platform).
-export const DOWNLOAD_URL = '#cta'
+// GAIMER is in a private beta: the beta page takes an invite code and an email, then gives the download
+// (GAIMER's relay, relay/src/invite-codes.js in gaimer-platform).
+export const DOWNLOAD_URL = 'https://gaimer-relay.gaimer.workers.dev/beta'
 
 type Os = 'windows' | 'mac'
 
@@ -11,8 +12,10 @@ function detectOs(): Os {
   return mac ? 'mac' : 'windows'
 }
 
-// Detected once per page load and shared, so every download button (nav, hero, CTA, pricing) always agrees.
-const OS: Os = detectOs()
+// GAIMER runs on Windows only (it needs GTA V), so every visitor is offered the Windows download; a Mac
+// visitor shown "Download for macOS" would get a Windows installer. detectOs comes back when there's a Mac build.
+const OS: Os = 'windows'
+void detectOs
 
 function WindowsLogo({ className = '' }: { className?: string }) {
   return (
